@@ -1,0 +1,350 @@
+/*============ BONNES PRATIQUES ==========*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*============== VARIABLES ===========*/
+
+:root {
+    /* Couleur principale - Bleu utilisé dans header et footer */
+    --color-primary: #7aa3a7;
+    
+    /* Couleur du texte - Gris foncé presque noir */
+    --color-text: #2C2C2C;
+    
+    /* Couleur de fond général du site - Beige clair */
+    --color-background: #fdf9f3;
+    
+    /* Police pour les titres - Cursive élégante */
+    --font-heading: 'Dancing Script', cursive;
+    
+    /* Police pour le corps de texte - Sans-serif moderne */
+    --font-body: 'Poppins', sans-serif;
+    
+    /* Police pour la navigation - Sans-serif clean */
+    --font-nav: 'Raleway', sans-serif;
+}
+
+/* ============================================
+   BODY - Style de base du site
+   Applique les polices et couleurs de base
+   ============================================ */
+body {
+    /* Police principale du site */
+    font-family: var(--font-body);
+    
+    /* Couleur du texte par défaut */
+    color: var(--color-text);
+    
+    /* Couleur de fond de la page */
+    background-color: var(--color-background);
+}
+
+/* ============================================
+   TITRES - Style de tous les titres
+   Utilise la police cursive pour tous les titres
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+}
+
+/* ============================================
+   HEADER HORIZONTAL
+   En-tête principal du site avec logo et navigation
+   ============================================ */
+
+/* Conteneur principal du header - Fond bleu */
+.header-horizontal {
+    background-color: var(--color-primary);
+    padding: 0;
+}
+
+/* Wrapper qui organise le logo et la navigation */
+.header-horizontal__wrapper {
+    display: flex;              /* Flexbox pour aligner logo et nav */
+    align-items: center;        /* Centre verticalement */
+    padding: 0.9375rem 1.875rem; /* Espacement interne (15px 30px) */
+    gap: 0;                     /* Pas d'espace entre les éléments */
+}
+
+/* Section du logo - Ne rétrécit jamais */
+.header-horizontal__logo-section {
+    flex-shrink: 0;  /* Le logo garde toujours sa taille */
+}
+
+/* Image du logo - Hauteur fixe de 90px */
+.header-horizontal__logo {
+    height: 5.625rem;  /* 90px en rem */
+    width: auto;       /* Largeur automatique pour garder les proportions */
+    display: block;    /* Supprime l'espace en-dessous de l'image */
+}
+
+/* Section droite qui contient icônes + ligne + navigation */
+.header-horizontal__right {
+    flex: 1;                    /* Prend tout l'espace restant */
+    display: flex;              /* LES ÉLÉMENT CE PLACE CÔTE À CÔTE AU LIEU DE S'EMPILÉ*/
+    flex-direction: column;     /* Empile verticalement icônes, ligne, nav */
+    margin-left: 1.875rem;      /* Espace de 30px entre logo et section droite */
+}
+
+/* Zone des icônes au-dessus de la ligne */
+.header-horizontal__top {
+    padding-bottom: 0.5rem;  /* Espace de 8px sous les icônes */
+}
+
+/* Conteneur des 3 icônes (recherche, compte, panier) */
+.header-horizontal__icons {
+    display: flex;
+    justify-content: flex-end;  /* Aligne les icônes à droite */
+    align-items: center;        /* Centre verticalement */
+    gap: 1.125rem;              /* Espace de 18px entre chaque icône */
+}
+
+/* Style de chaque icône cliquable */
+.header-horizontal__icon {
+    color: var(--color-text);     /* Couleur du texte */
+    text-decoration: none;        /* Pas de soulignement */
+    transition: all 0.3s ease;    /* Animation douce de 0.3 secondes */
+    display: flex;
+    align-items: center;
+}
+
+/* Animation au survol d'une icône */
+.header-horizontal__icon:hover {
+    color: #000000;              /* Devient noir au survol */
+    transform: scale(1.1);       /* Agrandit de 10% */
+}
+
+/* Taille des icônes SVG */
+.header-horizontal__icon svg {
+    width: 1.625rem;   /* 26px en rem */
+    height: 1.625rem;  /* 26px en rem */
+}
+
+/* Ligne horizontale qui sépare icônes et navigation */
+.header-horizontal__separator {
+    height: 0.0625rem;              /* Hauteur de 1px */
+    background-color: rgba(0, 0, 0, 0.2); /* Noir avec 20% d'opacité */
+    width: 100%;                    /* Prend toute la largeur */
+    margin: 0;                      /* Pas de marge */
+}
+
+/* Menu de navigation horizontal en dessous de la ligne */
+.header-horizontal__nav {
+    display: flex;
+    justify-content: flex-end;   /* Aligne le menu à droite */
+    align-items: center;         /* Centre verticalement */
+    gap: 3.4375rem;             /* Espace de 55px entre chaque lien */
+    padding-top: 0.625rem;      /* Espace de 10px au-dessus du menu */
+}
+
+/* Style de chaque lien de navigation */
+.header-horizontal__link {
+    color: var(--color-text);        /* Couleur du texte */
+    text-decoration: none;           /* Pas de soulignement */
+    font-family: var(--font-nav);    /* Police Raleway */
+    font-weight: 700;                /* Texte en gras */
+    font-size: 1.1875rem;           /* Taille de 19px */
+    padding: 0.3125rem 0;           /* Espacement vertical de 5px */
+    transition: all 0.3s ease;       /* Animation douce */
+    white-space: nowrap;             /* Le texte ne se coupe pas */
+    position: relative;              /* Pour positionner le dropdown */
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;                 /* Espace de 5px entre texte et flèche */
+}
+
+/* Animation au survol d'un lien */
+.header-horizontal__link:hover {
+    color: #000000;  /* Devient noir */
+}
+
+/* Lien actif (page courante) */
+.header-horizontal__link--active {
+    color: #000000;     /* Noir */
+    font-weight: 800;   /* Plus gras */
+}
+
+/* Flèche descendante à côté des menus déroulants */
+.header-horizontal__arrow {
+    font-size: 0.875rem;            /* Taille de 14px */
+    display: inline-block;  /* un block qui se place sur la meme ligne que d'autre élément*/
+    transition: transform 0.3s ease; /* Animation de rotation */
+}
+
+/* Animation de la flèche au survol du menu */
+.header-horizontal__dropdown:hover .header-horizontal__arrow {
+    transform: rotate(180deg);  /* Rotation de 180° (flèche vers le haut) */
+}
+
+/* Conteneur d'un menu déroulant */
+.header-horizontal__dropdown {
+    position: relative;  /* Pour positionner le menu en-dessous */
+}
+
+/* Menu déroulant caché par défaut */
+.header-horizontal__dropdown-menu {
+    display: none;                   /* Caché par défaut */
+    position: absolute;              /* Positionné par rapport au parent */
+    top: 100%;                       /* En-dessous du lien parent */
+    left: 0;                         /* Aligné à gauche du parent */
+    background-color: white;         /* Fond blanc */
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15); /* Ombre douce */
+    border-radius: 0.25rem;         /* Coins arrondis de 4px */
+    padding: 0.625rem 0;            /* Espacement vertical de 10px */
+    min-width: 11.25rem;            /* Largeur minimale de 180px */
+    z-index: 1000;                  /* Au-dessus de tout le contenu */
+    margin-top: 0.3125rem;          /* Espace de 5px en haut */
+}
+
+/* Affiche le menu déroulant au survol */
+.header-horizontal__dropdown:hover .header-horizontal__dropdown-menu {
+    display: block;  /* Devient visible */
+}
+
+/* Style de chaque lien dans le menu déroulant */
+.header-horizontal__dropdown-menu a {
+    display: block;                  /* Prend toute la largeur */
+    padding: 0.625rem 1.25rem;      /* Espacement interne (10px 20px) */
+    color: var(--color-text);        /* Couleur du texte */
+    text-decoration: none;           /* Pas de soulignement */
+    font-family: var(--font-nav);    /* Police Raleway */
+    font-weight: 600;                /* Texte semi-gras */
+    font-size: 1rem;                 /* Taille de 16px */
+    transition: background-color 0.3s ease; /* Animation douce du fond */
+}
+
+/* Animation au survol d'un lien du menu déroulant */
+.header-horizontal__dropdown-menu a:hover {
+    background-color: var(--color-primary); /* Fond bleu */
+    color: white;                           /* Texte blanc */
+}
+
+
+
+
+
+/* ============================================
+   FOOTER
+   Pied de page du site avec infos et réseaux sociaux
+   ============================================ */
+
+/* Conteneur principal du footer - Fond bleu */
+.footer-bg {
+    background-color: var(--color-primary);
+}
+
+/* Section des réseaux sociaux avec lignes décoratives */
+.footer-social-divider {
+    position: relative;      /* Pour positionner les lignes */
+    padding: 2rem 0;        /* Espacement vertical de 32px */
+}
+
+/* Ligne décorative AVANT la section réseaux sociaux */
+.footer-social-divider::before {
+    content: '';                           /* Crée un élément vide */
+    position: absolute;                    /* Positionné absolument */
+    left: 0;                               /* Commence à gauche */
+    right: 0;                              /* Se termine à droite */
+    height: 0.125rem;                     /* Hauteur de 2px */
+    background-color: var(--color-text);   /* Couleur du texte (gris foncé) */
+    top: 0;                                /* En haut de la section */
+}
+
+/* Ligne décorative APRÈS la section réseaux sociaux */
+.footer-social-divider::after {
+    content: '';                           /* Crée un élément vide */
+    position: absolute;                    /* Positionné absolument */
+    left: 0;                               /* Commence à gauche */
+    right: 0;                              /* Se termine à droite */
+    height: 0.125rem;                     /* Hauteur de 2px */
+    background-color: var(--color-text);   /* Couleur du texte (gris foncé) */
+    bottom: 0;                             /* En bas de la section */
+}
+
+/* ============================================
+   RESPONSIVE - TABLETTES (max 992px)
+   Adaptation pour écrans moyens
+   ============================================ */
+@media (max-width: 992px) {
+    /* Le header passe en colonne sur tablettes */
+    .header-horizontal__wrapper {
+        flex-direction: column;  /* Empile logo et nav verticalement */
+        gap: 1.25rem;           /* Espace de 20px entre logo et nav */
+        align-items: center;    /* Centre le contenu */
+    }
+    
+    /* La section droite prend toute la largeur */
+    .header-horizontal__right {
+        width: 100%;       /* Largeur complète */
+        margin-left: 0;    /* Pas de marge à gauche */
+    }
+    
+    /* Le menu de navigation s'adapte */
+    .header-horizontal__nav {
+        flex-wrap: wrap;           /* Les liens peuvent passer à la ligne */
+        justify-content: center;   /* Centre les liens */
+        gap: 1.875rem;            /* Réduit l'espace entre liens (30px) */
+    }
+    
+    /* Les icônes sont centrées */
+    .header-horizontal__icons {
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILES (max 768px)
+   Adaptation pour petits écrans
+   ============================================ */
+@media (max-width: 768px) {
+    /* Réduit encore l'espace entre liens */
+    .header-horizontal__nav {
+        gap: 1.25rem;  /* Espace de 20px */
+    }
+    
+    /* Réduit la taille de police des liens */
+    .header-horizontal__link {
+        font-size: 1.0625rem;  /* 17px au lieu de 19px */
+    }
+    
+    /* Réduit la hauteur du logo */
+    .header-horizontal__logo {
+        height: 4.375rem;  /* 70px au lieu de 90px */
+    }
+}
+
+/* ============================================
+   RESPONSIVE - PETITS MOBILES (max 576px)
+   Adaptation pour très petits écrans
+   ============================================ */
+@media (max-width: 576px) {
+    /* Réduit le padding du header */
+    .header-horizontal__wrapper {
+        padding: 0.9375rem;  /* 15px de padding */
+    }
+    
+    /* Le menu passe en colonne sur mobile */
+    .header-horizontal__nav {
+        flex-direction: column;  /* Empile les liens verticalement */
+        gap: 0.9375rem;         /* Espace de 15px entre liens */
+        text-align: center;     /* Centre le texte */
+    }
+    
+    /* Les liens sont centrés */
+    .header-horizontal__link {
+        font-size: 1.125rem;        /* Taille de 18px */
+        justify-content: center;    /* Centre le contenu */
+    }
+    
+    /* Augmente l'espace entre icônes */
+    .header-horizontal__icons {
+        gap: 1.5625rem;  /* 25px entre icônes */
+    }
+}
+
