@@ -126,6 +126,8 @@ h1, h2, h3, h4, h5, h6 {
     height: 1.625rem;  /* 26px en rem */
 }
 
+
+
 /* Ligne horizontale qui sépare icônes et navigation */
 .header-horizontal__separator {
     height: 0.0625rem;              /* Hauteur de 1px */
