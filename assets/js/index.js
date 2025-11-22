@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    console.log('Truffe Gourmande - JavaScript charge');
+    initSmoothScroll();
+    initSearchBar();
     
-    // Smooth scroll pour les ancres
+});
+
+function initSmoothScroll() {
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
     
     smoothScrollLinks.forEach(function(link) {
@@ -24,43 +27,54 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // BARRE DE RECHERCHE
+}
+
+function initSearchBar() {
     const searchIcon = document.getElementById('search-icon');
     const searchBar = document.getElementById('search-bar');
     const searchButton = document.querySelector('.header-horizontal__search-button');
 
-    if (searchIcon && searchBar) {
-        searchIcon.addEventListener('click', function(event) {
-            event.preventDefault();
-            searchBar.classList.toggle('show');
-            
-            if (searchBar.classList.contains('show')) {
-                const searchInput = searchBar.querySelector('.header-horizontal__search-input');
-                if (searchInput) {
-                    setTimeout(() => searchInput.focus(), 100);
-                }
-            }
-        });
-        
-        // Clic sur la loupe rose pour rechercher
-        if (searchButton) {
-            searchButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                const searchInput = searchBar.querySelector('.header-horizontal__search-input');
-                if (searchInput && searchInput.value.trim()) {
-                    // Logique de recherche à ajouter ici
-                    console.log('Recherche :', searchInput.value);
-                }
-            });
-        }
-        
-        // Fermer si clic ailleurs
-        document.addEventListener('click', function(event) {
-            if (!searchBar.contains(event.target) && !searchIcon.contains(event.target) && searchBar.classList.contains('show')) {
-                searchBar.classList.remove('show');
-            }
-        });
+    if (!searchIcon || !searchBar) {
+        return;
+    }
+
+    searchIcon.addEventListener('click', toggleSearchBar);
+    
+    if (searchButton) {
+        searchButton.addEventListener('click', executeSearch);
     }
     
-});
+    document.addEventListener('click', closeSearchBar);
+}
+
+function toggleSearchBar(event) {
+    event.preventDefault();
+    const searchBar = document.getElementById('search-bar');
+    searchBar.classList.toggle('show');
+    
+    if (searchBar.classList.contains('show')) {
+        const searchInput = searchBar.querySelector('.header-horizontal__search-input');
+        if (searchInput) {
+            setTimeout(() => searchInput.focus(), 100);
+        }
+    }
+}
+
+function executeSearch(event) {
+    event.preventDefault();
+    const searchBar = document.getElementById('search-bar');
+    const searchInput = searchBar.querySelector('.header-horizontal__search-input');
+    
+    if (searchInput && searchInput.value.trim()) {
+        console.log('Recherche :', searchInput.value);
+    }
+}
+
+function closeSearchBar(event) {
+    const searchBar = document.getElementById('search-bar');
+    const searchIcon = document.getElementById('search-icon');
+    
+    if (!searchBar.contains(event.target) && !searchIcon.contains(event.target) && searchBar.classList.contains('show')) {
+        searchBar.classList.remove('show');
+    }
+}
