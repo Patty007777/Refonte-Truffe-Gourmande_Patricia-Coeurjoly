@@ -1,295 +1,225 @@
-/* ============================================
-   RÈGLES GLOBALES
-   ============================================ */
+/*============ BONNES PRATIQUES ==========*/
 
-/* Applique box-sizing à tous les éléments */
-/* EFFET : Les paddings et borders sont inclus dans la largeur/hauteur */
 * {
   box-sizing: border-box;
 }
 
-/* Défilement fluide pour les ancres */
-/* EFFET : Quand on clique un lien #ancre, défilement smooth au lieu de saut brusque */
 html {
   scroll-behavior: smooth;
 }
 
-/* ============================================
-   VARIABLES CSS
-   ============================================ */
+/*============== VARIABLES ===========*/
 
-/* Variables réutilisables dans tout le CSS */
-/* EFFET : Permet de changer toutes les couleurs/polices en un seul endroit */
 :root {
-    --color-primary: #7aa3a7;        /* Bleu-vert (header et footer) */
-    --color-text: #2C2C2C;           /* Gris foncé (textes) */
-    --color-background: #fdf9f3;     /* Beige crème (fond de page) */
-    --font-heading: 'Dancing Script', cursive;  /* Police titre (script élégant) */
-    --font-body: 'Poppins', sans-serif;         /* Police texte (moderne et lisible) */
-    --font-nav: 'Raleway', sans-serif;          /* Police navigation (propre) */
+
+    --color-primary: #7aa3a7;
+    --color-text: #2C2C2C;
+    --color-background: #fdf9f3;
+    --font-heading: 'Dancing Script', cursive;
+    --font-body: 'Poppins', sans-serif;
+    --font-nav: 'Raleway', sans-serif;
 }   
 
-/* ============================================
-   STYLES DE BASE
-   ============================================ */
+/*========== STYLE DE BASE POLICES ET COULEURS ===========*/
 
-/* Style du body */
-/* EFFET : Toute la page utilise Poppins, texte gris foncé, fond beige */
 body {
   font-family: var(--font-body); 
   color: var(--color-text);
   background-color: var(--color-background);
 }
 
-/* Tous les titres utilisent Dancing Script */
-/* EFFET : Titres en style écriture manuscrite élégante, couleur gris foncé */
+/*=========TITRES ===========*/
+
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--color-text);
 }
 
-/* ============================================
-   HEADER
-   ============================================ */
+/*========== SECTION HEADER =================*/
 
-/* Conteneur principal du header */
-/* EFFET : Fond bleu-vert, sans padding */
 .header-horizontal {
     background-color: var(--color-primary);
     padding: 0;
 }
 
-/* Wrapper flex pour organiser logo et navigation */
-/* EFFET : Logo à gauche, navigation à droite, alignés verticalement au centre */
 .header-horizontal__wrapper {
     display: flex;
     align-items: center;
-    padding: 0.9375rem 1.875rem;  /* 15px 30px */
+    padding: 0.9375rem 1.875rem;
     gap: 0;  
 }
 
-/* Section du logo */
-/* EFFET : Logo ne se compresse jamais */
 .header-horizontal__logo-section {
     flex-shrink: 0;
 }
 
-/* Image du logo */
-/* EFFET : Logo hauteur 138.4px (8.65rem), largeur auto pour garder proportions */
 .header-horizontal__logo {
     height: 8.65rem;
     width: auto;
     display: block;
 }
 
-/* Section droite (icônes + nav) */
-/* EFFET : Prend tout l'espace disponible, organisé en colonne */
 .header-horizontal__right {
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 1.8rem;  /* 28.8px */
+    margin-left: 1.8rem;
 }
 
-/* Top section (icônes) */
-/* EFFET : Espace sous les icônes avant la ligne de séparation */
 .header-horizontal__top {
-    padding-bottom: 0.5rem;  /* 8px */
+    padding-bottom: 0.5rem;
 }
 
-/* Conteneur des icônes */
-/* EFFET : Icônes alignées à droite avec espacement de 19.2px entre elles */
 .header-horizontal__icons {
     display: flex;
     justify-content: flex-end; 
     align-items: center;
-    gap: 1.2rem;  /* 19.2px */
+    gap: 1.2rem
 } 
 
-/* Style d'une icône */
-/* EFFET : Icône clickable avec transition smooth, grossit de 10% au survol */
 .header-horizontal__icon {
     color: var(--color-text); 
     text-decoration: none;
     transition: all 0.3s ease;
     display: flex;
-    align-items: center;
+     align-items: center;
 }
 
-/* Hover sur icône */
-/* EFFET : Icône devient noire et 10% plus grande au survol */
 .header-horizontal__icon:hover {
     color: #000000; 
     transform: scale(1.1);
 }
 
-/* Images des icônes */
-/* EFFET : Icônes 40x40px (2.5rem) */
 .header-horizontal__icon img {
     width: 2.5rem; 
     height: 2.5rem;
 }
 
-/* Ligne de séparation noire */
-/* EFFET : Ligne horizontale noire de 2px entre icônes et navigation */
 .header-horizontal__separator {
-    height: 0.125rem;  /* 2px */
+    height: 0.125rem;
     background-color: black;
     width: 100%;
     margin: 0;  
 }
 
-/* Navigation principale */
-/* EFFET : Liens centrés horizontalement avec espacement de 54.4px */
 .header-horizontal__nav {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    gap: 3.4rem;  /* 54.4px */
-    padding-top: 0.625rem;  /* 10px */
+    gap: 3.4rem;
+    padding-top: 0.625rem;
 }
 
-/* Style d'un lien de navigation */
-/* EFFET : Liens noirs, police Raleway 19px, transition smooth */
 .header-horizontal__link {
+
    color: black;
    text-decoration: none; 
    font-family: var(--font-nav);
    font-weight: 500;
-   font-size: 1.1875rem;  /* 19px */
-   padding: 0.3125rem 0;  /* 5px */
+   font-size: 1.1875rem; 
+   padding: 0.3125rem 0; 
    transition: all 0.3s ease; 
    white-space: nowrap; 
    position: relative; 
    display: flex;
    align-items: center;
-   gap: 0.3125rem;  /* 5px entre texte et flèche */
+   gap: 0.3125rem;  
 }
 
-/* Hover sur lien de navigation */
-/* EFFET : Lien devient blanc au survol */
 .header-horizontal__link:hover {
     color: white;
 }
 
-/* Lien actif (page actuelle) */
-/* EFFET : Lien en gras (800) et noir pour indiquer page actuelle */
 .header-horizontal__link--active {
     color: #000000;
     font-weight: 800;
 }
 
-/* Flèche des dropdowns */
-/* EFFET : Petite flèche 14px (0.875rem) qui tourne au survol */
 .header-horizontal__arrow {
-    font-size: 0.875rem;  /* 14px */
+    font-size: 0.875rem; 
     display: inline-block;
     transition: transform 0.3s ease;
 }  
 
-/* Rotation de la flèche au survol du dropdown */
-/* EFFET : Flèche fait une rotation de 180° quand on survole le menu */
 .header-horizontal__dropdown:hover .header-horizontal__arrow {
     transform: rotate(180deg);
 }
 
-/* Conteneur dropdown */
-/* EFFET : Position relative pour que le menu soit positionné par rapport à lui */
 .header-horizontal__dropdown {
     position: relative;
 }
 
-/* Menu déroulant caché par défaut */
-/* EFFET : Menu blanc avec ombre, coins arrondis, apparaît sous le lien parent */
 .header-horizontal__dropdown-menu {
     display: none;
     position: absolute; 
-    top: 100%;  /* Sous le lien parent */
+    top: 100%;  
     left: 0; 
     background-color: white;
-    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);  /* Ombre 4px 10px */
-    border-radius: 0.25rem;  /* Coins arrondis 4px */
-    padding: 0.625rem 0;  /* 10px vertical */
-    min-width: 11.25rem;  /* 180px minimum */
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15); 
+    border-radius: 0.25rem; 
+    padding: 0.625rem 0;  
+    min-width: 11.25rem;  
     z-index: 1000; 
 }
 
-/* Afficher le menu au survol */
-/* EFFET : Menu apparaît quand on survole le dropdown */
 .header-horizontal__dropdown:hover .header-horizontal__dropdown-menu {
     display: block;
 }
 
-/* Liens dans le menu déroulant */
-/* EFFET : Liens en blocs avec padding, police Raleway gras 16px */
 .header-horizontal__dropdown-menu a {
     display: block; 
-    padding: 0.625rem 1.25rem;  /* 10px 20px */
+    padding: 0.625rem 1.25rem;
     color: var(--color-text);
     text-decoration: none; 
     font-family: var(--font-nav);
     font-weight: 600; 
-    font-size: 1rem;  /* 16px */
+    font-size: 1rem; 
     transition: background-color 0.3s ease;
 }
 
-/* Hover sur lien du dropdown */
-/* EFFET : Fond devient bleu-vert et texte blanc au survol */
 .header-horizontal__dropdown-menu a:hover {
     background-color: var(--color-primary);
     color: white; 
 }
 
-/* ============================================
-   BARRE DE RECHERCHE
-   ============================================ */
+/*============= BARRE DE RECHERCHE ====================*/
 
-/* Barre de recherche cachée par défaut */
-/* EFFET : Invisible, largeur 0, apparaît avec animation smooth quand classe "show" ajoutée */
 .header-horizontal__search {
-    display: none !important;
+    display: none;
     opacity: 0;
     max-width: 0;
     overflow: hidden;
     transition: all 0.4s ease;
     align-items: center;
-    gap: 0.5rem;  /* 8px entre input et bouton */
+    gap: 0.5rem;
 }
 
-/* Barre de recherche visible */
-/* EFFET : Apparaît avec largeur max 350px, opacity 100% */
 .header-horizontal__search.show {
-    display: flex !important;
+    display: flex;
     opacity: 1;
     max-width: 350px;
 }
 
-/* Input de recherche */
-/* EFFET : Champ arrondi avec border noir 2px, padding confortable */
 .header-horizontal__search-input {
     width: 100%;
-    padding: 0.5rem 1rem;  /* 8px 16px */
+    padding: 0.5rem 1rem;
     border: 2px solid black;
     border-radius: 25px;
     font-family: var(--font-body);
-    font-size: 0.9rem;  /* 14.4px */
+    font-size: 0.9rem;
     outline: none;
 }
 
-/* Input focus */
-/* EFFET : Border reste noir, ombre légère apparaît autour du champ */
 .header-horizontal__search-input:focus {
     border-color: #000;
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Bouton loupe rose */
-/* EFFET : Cercle rose 48x48px avec loupe blanche au centre, cliquable */
 .header-horizontal__search-button {
-    width: 3rem;  /* 48px */
-    height: 3rem;  /* 48px */
-    background-color: #e8a5a5;  /* Rose */
-    border-radius: 50%;  /* Forme ronde */
+    width: 3rem;
+    height: 3rem;
+    background-color: #e8a5a5;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -298,42 +228,31 @@ h1, h2, h3, h4, h5, h6 {
     transition: background-color 0.3s ease;
 }
 
-/* Hover sur bouton loupe */
-/* EFFET : Rose devient légèrement plus foncé au survol */
 .header-horizontal__search-button:hover {
     background-color: #d89090;
 }
 
-/* Icône dans le bouton */
-/* EFFET : Loupe 24x24px en blanc (filter invert) */
 .header-horizontal__search-button img {
-    width: 1.5rem;  /* 24px */
-    height: 1.5rem;  /* 24px */
-    filter: brightness(0) invert(1);  /* Rend l'image blanche */
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: brightness(0) invert(1);
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
+/*============= FOOTER ====================*/
+/*============= FOOTER ====================*/
 
-/* Fond du footer */
-/* EFFET : Fond bleu-vert identique au header */
 .footer-bg {
     background-color: var(--color-primary);
 }
 
-/* Wrapper du titre animé */
-/* EFFET : Conteneur pour le titre et les lignes animées, centré */
 .footer-title-wrapper {
     position: relative;
     text-align: center;
-    margin-bottom: 3rem;  /* 48px sous le titre */
+    margin-bottom: 3rem;
     width: 100%;
     padding: 0;
 }
 
-/* Lignes avant et après le titre */
-/* EFFET : Lignes horizontales de 2px de chaque côté du titre */
 .footer-title-wrapper::before,
 .footer-title-wrapper::after {
     content: '';
@@ -344,17 +263,13 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--color-text);
 }
 
-/* Ligne gauche */
-/* EFFET : Part du bord gauche, s'arrête à 0.5rem du texte, rétrécit pendant l'animation */
 .footer-title-wrapper::before {
     left: 0;
-    right: calc(50% + 0.5rem);  /* 8px d'espace avec le texte */
+    right: calc(50% + 0.5rem); 
     transform-origin: left center;
     animation: shrink-from-right 3s steps(50) 1s 1 normal forwards;
 }
 
-/* Ligne droite */
-/* EFFET : Part du bord droit, s'arrête à 0.5rem du texte, rétrécit pendant l'animation */
 .footer-title-wrapper::after {
     right: 0;
     left: calc(50% + 0.5rem);
@@ -362,30 +277,24 @@ h1, h2, h3, h4, h5, h6 {
     animation: shrink-from-left 3s steps(50) 1s 1 normal forwards;
 }
 
-/* Titre h2 du footer */
-/* EFFET : Texte gris foncé, inline-block pour que les lignes ::before/after se placent correctement */
 .footer-bg h2 {
-    color: var(--color-text) !important;
+    color: var(--color-text);
     margin: 0;
     display: inline-block;
     position: relative;
     z-index: 1;
 }
 
-/* Span avec effet machine à écrire */
-/* EFFET : Texte s'écrit lettre par lettre avec curseur clignotant (border-right) */
 .footer-bg h2 .typewriter {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     width: 0;
-    border-right: 3px solid var(--color-text);  /* Curseur */
+    border-right: 3px solid var(--color-text); 
     animation: typing 3s steps(50) 1s 1 normal forwards, 
                blink 0.75s step-end 1s 4 normal forwards;
 }
 
-/* Animation : texte s'écrit */
-/* EFFET : Largeur passe de 0 à 100% en 3 secondes, 50 steps (style machine à écrire) */
 @keyframes typing {
     from {
         width: 0;
@@ -395,16 +304,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Animation : curseur clignote */
-/* EFFET : Border droite (curseur) devient transparente pour créer clignotement */
 @keyframes blink {
     50% {
         border-right-color: transparent;
     }
 }
 
-/* Animation : ligne gauche rétrécit */
-/* EFFET : Ligne rétrécit à 33% de sa taille, côté droit se rapproche du texte */
 @keyframes shrink-from-right {
     0% {
         transform: translateY(-50%) scaleX(1);
@@ -414,8 +319,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Animation : ligne droite rétrécit */
-/* EFFET : Ligne rétrécit à 33% de sa taille, côté gauche se rapproche du texte */
 @keyframes shrink-from-left {
     0% {
         transform: translateY(-50%) scaleX(1);
@@ -425,112 +328,70 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Titres h3 du footer */
-/* EFFET : Police Dancing Script, taille 28.8px (1.8rem), gris foncé */
+/* Force tous les h3 à avoir la même hauteur */
 .footer-bg h3 {
     font-family: var(--font-heading) !important;
     font-size: 1.8rem !important;
     color: var(--color-text) !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
 }
 
-/* Colonne du logo */
-/* EFFET : Logo centré verticalement dans sa colonne */
+/* Alignement vertical de toutes les colonnes */
+.footer-bg .row.g-4.mb-4 {
+    align-items: flex-start !important;
+}
+
+/* Centre le logo dans sa colonne */
 .footer-bg .row .col-md-3:first-child {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Liens et texte des listes */
-/* EFFET : Tous les liens et textes en gris foncé */
-.footer-bg .list-unstyled a,
-.footer-bg .list-unstyled li {
-    color: var(--color-text) !important;
-}
-
-/* Transition sur liens */
-/* EFFET : Changement de couleur smooth en 0.3s */
-.footer-bg .list-unstyled a {
-    transition: color 0.3s ease;
-}
-
-/* Hover sur liens du footer */
-/* EFFET : Liens deviennent blancs au survol */
-.footer-bg .list-unstyled a:hover {
-    color: white !important;
-}
-
 /* Section réseaux sociaux */
-/* EFFET : Conteneur avec padding vertical 32px et lignes avant/après */
 .footer-social-divider {
     position: relative;
-    padding: 2rem 0;  /* 32px top/bottom */
+    padding: 2rem 0;
 }
 
-/* Lignes avant et après réseaux sociaux */
-/* EFFET : Lignes horizontales noires de 2px au-dessus et en-dessous */
 .footer-social-divider::before,
 .footer-social-divider::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    height: 0.125rem;  /* 2px */
+    height: 0.125rem;
     background-color: var(--color-text);
 }
 
-/* Ligne du haut */
 .footer-social-divider::before {
     top: 0;
 }
 
-/* Ligne du bas */
 .footer-social-divider::after {
     bottom: 0;
 }
 
-/* Contenu de la section réseaux sociaux */
-/* EFFET : Titre à gauche, icônes à droite (space-between) */
-.footer-social-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;  /* 32px */
-    flex-wrap: wrap;
+/*============= EFFETS HOVER FOOTER ====================*/
+
+/* Transition et hover sur les liens */
+.footer-bg .list-unstyled a {
+    transition: color 0.3s ease;
 }
 
-/* Titre "Suivez-nous sur les réseaux" */
-/* EFFET : Taille 28.8px, gris foncé, sans margin */
-.footer-social-divider h3 {
-    font-size: 1.8rem !important;
-    color: var(--color-text) !important;
-    margin: 0 !important;
+.footer-bg .list-unstyled a:hover {
+    color: white !important;
 }
 
-/* Conteneur des icônes sociales */
-/* EFFET : Icônes alignées horizontalement avec 32px d'espacement */
-.footer-social-icons {
-    display: flex;
-    gap: 2rem;  /* 32px */
-    align-items: center;
-}
-
-/* Images des réseaux sociaux */
-/* EFFET : Icônes 56px de haut (3.5rem), transition smooth */
-.footer-social-divider a img {
+/* Transition et hover sur les icônes sociales */
+.footer-social-divider a {
     transition: transform 0.3s ease;
-    display: block;
-    height: 3.5rem !important;  /* 56px */
+    display: inline-block;
 }
 
-/* Hover sur icônes sociales */
-/* EFFET : Icônes grandissent de 15% au survol */
 .footer-social-divider a:hover img {
     transform: scale(1.15);
 }
 
-/* Copyright */
-/* EFFET : Texte gris foncé */
-.footer-bg .text-center p {
-    color: var(--color-text) !important;
-}
+

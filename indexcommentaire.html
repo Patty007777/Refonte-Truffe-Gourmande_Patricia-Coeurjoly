@@ -1,185 +1,566 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truffe Gourmande / Gâteries naturelles pour animaux</title>
-    
-    <!-- Bootstrap : Framework CSS pour le responsive et les composantes -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Google Fonts : Polices personnalisées -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@500;600&family=Raleway:wght@500;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS personnalisé -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
+<!-- Déclaration du type de document : indique au navigateur qu'il s'agit d'un fichier HTML5 (la version moderne de HTML) -->
+<!-- DOCTYPE = "Document Type" (Type de document) -->
+<!-- Cette ligne doit TOUJOURS être la première ligne d'un fichier HTML -->
 
-    <!-- HEADER avec logo, navigation et barre de recherche -->
+<html lang="fr">
+<!-- Balise racine qui contient TOUT le contenu de la page web -->
+<!-- lang="fr" indique que la langue principale du site est le français -->
+<!-- Cela aide les moteurs de recherche et les lecteurs d'écran pour les personnes malvoyantes -->
+
+<head>
+<!-- Section HEAD : contient les métadonnées (informations sur la page) -->
+<!-- Ce qui est dans le HEAD n'est PAS visible sur la page, mais configure le site -->
+
+    <meta charset="UTF-8">
+    <!-- Définit l'encodage des caractères en UTF-8 -->
+    <!-- UTF-8 permet d'afficher correctement les accents français (é, è, à, ç, etc.) -->
+    <!-- Sans cette ligne, les accents pourraient s'afficher comme des symboles bizarres -->
+    <!-- charset = "character set" (jeu de caractères) -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configure l'affichage sur les appareils mobiles (téléphones, tablettes) -->
+    <!-- width=device-width : la largeur de la page = la largeur de l'écran -->
+    <!-- initial-scale=1.0 : le niveau de zoom par défaut est 100% (ni zoomé, ni dézoomé) -->
+    <!-- Cette ligne est ESSENTIELLE pour un site responsive (qui s'adapte aux mobiles) -->
+    <!-- viewport = "fenêtre d'affichage" -->
+
+    <title>Truffe Gourmande / Gâteries naturelles pour animaux</title>
+    <!-- Titre qui apparaît dans l'onglet du navigateur -->
+    <!-- C'est aussi ce titre qui apparaît dans les résultats de Google -->
+    <!-- Le "/" est utilisé comme séparateur visuel entre le nom de l'entreprise et sa description -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Lien vers la feuille de style CSS de Bootstrap (framework CSS) -->
+    <!-- cdn.jsdelivr.net = serveur qui héberge Bootstrap gratuitement (CDN = Content Delivery Network) -->
+    <!-- bootstrap@5.3.0 = version 5.3.0 de Bootstrap -->
+    <!-- bootstrap.min.css = fichier CSS minifié (compressé pour être plus léger et charger plus vite) -->
+    <!-- rel="stylesheet" indique que c'est une feuille de style -->
+    <!-- Ce lien donne accès à toutes les classes Bootstrap (container, row, col, etc.) -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Préconnexion au serveur Google Fonts pour charger les polices plus rapidement -->
+    <!-- preconnect = "préconnexion" - établit la connexion au serveur AVANT de demander les fichiers -->
+    <!-- Cela réduit le temps de chargement des polices personnalisées -->
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Préconnexion au serveur qui héberge réellement les fichiers de polices Google -->
+    <!-- crossorigin : nécessaire car les polices viennent d'un domaine différent (sécurité) -->
+    <!-- gstatic.com = serveur de fichiers statiques de Google -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@500;600&family=Raleway:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Importation des 3 polices personnalisées utilisées sur le site -->
+    <!-- Dancing Script avec graisse 700 (gras) - utilisée pour les titres -->
+    <!-- Poppins avec graisses 500 et 600 (medium et semi-bold) - utilisée pour le texte général -->
+    <!-- Raleway avec graisses 500 et 700 (medium et bold) - utilisée pour la navigation -->
+    <!-- display=swap : affiche une police par défaut pendant le chargement, puis change pour la police Google -->
+    <!-- Le "+" dans "Dancing+Script" remplace l'espace dans l'URL -->
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Lien vers NOTRE feuille de style CSS personnalisée -->
+    <!-- assets/css/styles.css = chemin relatif vers le fichier -->
+    <!-- Ce fichier contient toutes nos règles CSS personnalisées -->
+    <!-- Il est chargé APRÈS Bootstrap pour pouvoir surcharger les styles Bootstrap si nécessaire -->
+
+</head>
+<!-- Fin de la section HEAD -->
+
+<body>
+<!-- Balise BODY : contient TOUT le contenu VISIBLE de la page -->
+<!-- Tout ce qui est entre <body> et </body> sera affiché dans la fenêtre du navigateur -->
+
+     <!-- =========================== HEADER ===================== -->
+     <!-- Commentaire HTML : ne s'affiche pas sur la page, sert à organiser le code -->
+     <!-- Ce commentaire indique le début de la section HEADER (en-tête) -->
+
     <header class="header-horizontal">
+    <!-- Balise sémantique HEADER : indique que c'est l'en-tête du site -->
+    <!-- class="header-horizontal" : applique les styles CSS définis pour cette classe -->
+    <!-- Cette classe est définie dans styles.css et applique la couleur de fond turquoise -->
+
         <div class="container-fluid">
+        <!-- DIV avec classe Bootstrap "container-fluid" -->
+        <!-- container-fluid = conteneur qui prend toute la largeur de l'écran -->
+        <!-- fluid = "fluide" (s'adapte à 100% de la largeur) -->
+        <!-- Contrairement à "container" qui a une largeur maximale fixe -->
+
             <div class="header-horizontal__wrapper">
+            <!-- DIV wrapper (enveloppe) qui contient tous les éléments du header -->
+            <!-- Cette classe utilise Flexbox pour aligner le logo et le menu horizontalement -->
+            <!-- Le "__" est la convention BEM (Block Element Modifier) pour nommer les classes -->
+
                 
-                <!-- Logo cliquable qui ramène à l'accueil -->
                 <div class="header-horizontal__logo-section">
+                <!-- Section qui contient le logo -->
+                <!-- flex-shrink: 0 dans le CSS empêche le logo de rétrécir si l'espace manque -->
+
                     <a href="index.html">
+                    <!-- Lien qui ramène à la page d'accueil quand on clique sur le logo -->
+                    <!-- href="index.html" = destination du lien (la page d'accueil) -->
+                    <!-- C'est une convention web : cliquer sur le logo = retour à l'accueil -->
+
                         <img src="assets/images/logo.png" alt="Truffe Gourmande" class="header-horizontal__logo">
+                        <!-- Image du logo -->
+                        <!-- src = "source" : chemin vers le fichier image -->
+                        <!-- assets/images/logo.png = dossier assets, sous-dossier images, fichier logo.png -->
+                        <!-- alt = "alternative" : texte qui s'affiche si l'image ne charge pas -->
+                        <!-- Le texte alt est aussi lu par les lecteurs d'écran pour l'accessibilité -->
+                        <!-- class="header-horizontal__logo" applique height: 8.65rem (environ 138px) -->
+
                     </a>
+                    <!-- Fermeture de la balise de lien -->
+
                 </div>
+                <!-- Fermeture de la section logo -->
                 
                 <div class="header-horizontal__right">
+                <!-- Section de droite qui contient les icônes et la navigation -->
+                <!-- flex: 1 dans le CSS fait que cette section prend tout l'espace disponible -->
+                <!-- Elle se positionne automatiquement à droite du logo -->
+
                     <div class="header-horizontal__top">
+                    <!-- Partie supérieure : contient les icônes (recherche, compte, panier) -->
+                    <!-- padding-bottom: 0.5rem ajoute de l'espace en bas -->
+
                         <div class="header-horizontal__icons">
+                        <!-- Conteneur des icônes -->
+                        <!-- display: flex aligne les icônes horizontalement -->
+                        <!-- justify-content: flex-end les aligne à droite -->
+                        <!-- gap: 1.2rem ajoute de l'espace entre chaque icône -->
 
-                            <!-- Barre de recherche cachée (apparaît au clic sur loupe) -->
                             <div class="header-horizontal__search" id="search-bar">
-                                <input type="text" class="header-horizontal__search-input" placeholder="Rechercher..." aria-label="Champ de recherche">
+                            <!-- Barre de recherche (cachée par défaut) -->
+                            <!-- id="search-bar" permet au JavaScript de cibler cet élément -->
+                            <!-- display: none dans le CSS la rend invisible au départ -->
+                            <!-- La classe .show (ajoutée par JavaScript) la rend visible -->
+
+                                <input type="text" class="header-horizontal__search-input" placeholder="Rechercher...">
+                                <!-- Champ de texte pour taper la recherche -->
+                                <!-- type="text" : champ de texte simple -->
+                                <!-- placeholder = texte gris qui disparaît quand on commence à écrire -->
+                                <!-- Le CSS applique border-radius: 25px pour les coins arrondis -->
+
                                 <div class="header-horizontal__search-button">
+                                <!-- Bouton de recherche rond et rose -->
+                                <!-- width et height: 3rem = bouton carré de 48px -->
+                                <!-- background-color: #e8a5a5 = couleur rose/saumon -->
+                                <!-- border-radius: 50% le rend parfaitement rond -->
+
                                     <img src="assets/images/icone-loupe.png" alt="Rechercher">
+                                    <!-- Icône de loupe dans le bouton -->
+                                    <!-- filter: brightness(0) invert(1) dans le CSS rend l'icône blanche -->
+
                                 </div>
-                            </div>
+                                <!-- Fermeture du bouton de recherche -->
 
-                            <!-- Icône loupe : clic pour afficher la barre de recherche -->
+                            </div>
+                            <!-- Fermeture de la barre de recherche -->
+
                             <a href="#" class="header-horizontal__icon" id="search-icon" aria-label="Rechercher">
+                            <!-- Icône de loupe cliquable qui fait apparaître la barre de recherche -->
+                            <!-- href="#" : lien vide (l'action est gérée par JavaScript) -->
+                            <!-- id="search-icon" : permet au JavaScript de détecter le clic -->
+                            <!-- aria-label : étiquette pour l'accessibilité (lecteurs d'écran) -->
+
                                 <img src="assets/images/icone-loupe.png" alt="Rechercher">
+                                <!-- Image de la loupe -->
+                                <!-- width et height: 2.5rem (40px) dans le CSS -->
+
                             </a>
-                            
-                            <!-- Icône compte utilisateur -->
+                            <!-- Fermeture du lien de recherche -->
+
                             <a href="coordonnees.html" class="header-horizontal__icon" aria-label="Mon compte">
+                            <!-- Icône du compte utilisateur -->
+                            <!-- href="coordonnees.html" : mène à la page des coordonnées/compte -->
+
                                 <img src="assets/images/icone-compte.png" alt="Mon compte">
+                                <!-- Image de l'icône compte (silhouette de personne) -->
+
                             </a>
-                            
-                            <!-- Icône panier d'achat -->
+                            <!-- Fermeture du lien compte -->
+
                             <a href="panier.html" class="header-horizontal__icon" aria-label="Panier">
+                            <!-- Icône du panier d'achat -->
+                            <!-- href="panier.html" : mène à la page du panier -->
+
                                 <img src="assets/images/icone-panier.png" alt="Panier">
+                                <!-- Image de l'icône panier -->
+
                             </a>
+                            <!-- Fermeture du lien panier -->
+
                         </div>
+                        <!-- Fermeture du conteneur des icônes -->
+
                     </div>
+                    <!-- Fermeture de la partie supérieure -->
 
-                    <!-- Ligne de séparation noire -->
-                    <div class="header-horizontal__separator"></div>
+                  
 
-                    <!-- Navigation principale avec dropdowns -->
-                    <nav class="header-horizontal__nav">
+                      <div class="header-horizontal__separator"></div>
+                      <!-- Ligne de séparation horizontale noire -->
+                      <!-- height: 0.125rem (2px) et background-color: black dans le CSS -->
+                      <!-- Sépare visuellement les icônes du menu de navigation -->
+
+                       <nav class="header-horizontal__nav">
+                       <!-- Balise sémantique NAV : indique que c'est un menu de navigation -->
+                       <!-- display: flex aligne les liens horizontalement -->
+                       <!-- justify-content: center centre les liens -->
+                       <!-- gap: 3.4rem ajoute de l'espace entre chaque lien -->
+
                         <a href="index.html" class="header-horizontal__link header-horizontal__link--active">Accueil</a>
-                        
-                        <!-- Menu déroulant Boutique -->
+                        <!-- Lien vers la page d'accueil -->
+                        <!-- header-horizontal__link--active : classe qui indique la page actuelle -->
+                        <!-- Dans le CSS, cette classe met le texte en noir foncé et gras (font-weight: 800) -->
+                        <!-- Le "--" indique un "modifier" en BEM (état spécial) -->
+
                         <div class="header-horizontal__dropdown">
+                        <!-- Conteneur pour un menu déroulant (dropdown) -->
+                        <!-- position: relative permet de positionner le menu déroulant en dessous -->
+
                             <a href="boutique.html" class="header-horizontal__link">
+                            <!-- Lien principal du menu déroulant -->
+
                                 Boutique 
+                                <!-- Texte du lien -->
+
                                 <span class="header-horizontal__arrow">▼</span>
+                                <!-- Flèche vers le bas (caractère Unicode ▼) -->
+                                <!-- Le CSS applique transform: rotate(180deg) au survol pour la retourner -->
+                                <!-- span = balise inline pour styliser une partie du texte -->
+
                             </a>
+                            <!-- Fermeture du lien Boutique -->
+                        
                             <div class="header-horizontal__dropdown-menu">
+                            <!-- Menu déroulant (caché par défaut) -->
+                            <!-- display: none dans le CSS le cache -->
+                            <!-- Au survol du parent (.dropdown:hover), il devient visible -->
+                            <!-- position: absolute le positionne au-dessus du contenu -->
+
                                 <a href="chien.html">Chien</a>
+                                <!-- Lien vers la catégorie Chien -->
+                                <!-- display: block fait que chaque lien prend toute la largeur -->
+
                                 <a href="chat.html">Chat</a>
+                                <!-- Lien vers la catégorie Chat -->
+
                                 <a href="rongeurs.html">Rongeurs</a>
+                                <!-- Lien vers la catégorie Rongeurs -->
+
                                 <a href="cheval.html">Cheval</a>
-                            </div>
-                        </div>
+                                <!-- Lien vers la catégorie Cheval -->
 
-                        <!-- Menu déroulant Notre histoire -->
+                            </div>
+                            <!-- Fermeture du menu déroulant Boutique -->
+
+                        </div>
+                        <!-- Fermeture du conteneur dropdown Boutique -->
+
+                        
                         <div class="header-horizontal__dropdown">
-                            <a href="notre-histoire.html" class="header-horizontal__link">
-                                Notre histoire 
-                                <span class="header-horizontal__arrow">▼</span>
-                            </a>
-                            <div class="header-horizontal__dropdown-menu">
-                                <a href="notre-histoire.html#histoire">Histoire</a>
-                                <a href="notre-histoire.html#equipe">Équipe</a>
-                                <a href="notre-histoire.html#mission">Mission</a>
-                                <a href="notre-histoire.html#valeurs">Valeurs</a>
-                            </div>
-                        </div>
+                        <!-- Deuxième menu déroulant pour "Notre histoire" -->
 
-                        <a href="coordonnees.html" class="header-horizontal__link">Nos coordonnées</a>
+                            <a href="notre-histoire.html" class="header-horizontal__link">
+                            <!-- Lien principal vers la page Notre histoire -->
+
+                                Notre histoire 
+                                <!-- Texte du lien -->
+
+                                <span class="header-horizontal__arrow">▼</span>
+                                <!-- Flèche vers le bas -->
+
+                            </a>
+                            <!-- Fermeture du lien Notre histoire -->
+
+                            <div class="header-horizontal__dropdown-menu">
+                            <!-- Menu déroulant avec des ancres (liens vers des sections de la même page) -->
+
+                                <a href="notre-histoire.html#histoire">Histoire</a>
+                                <!-- Lien vers la section #histoire de la page notre-histoire.html -->
+                                <!-- Le "#" suivi d'un mot crée un lien d'ancre (scroll vers une section) -->
+
+                                <a href="notre-histoire.html#equipe">Équipe</a>
+                                <!-- Lien vers la section #equipe -->
+
+                                <a href="notre-histoire.html#mission">Mission</a>
+                                <!-- Lien vers la section #mission -->
+
+                                <a href="notre-histoire.html#valeurs">Valeurs</a>
+                                <!-- Lien vers la section #valeurs -->
+
+                            </div>
+                            <!-- Fermeture du menu déroulant Notre histoire -->
+
+                        </div>
+                        <!-- Fermeture du conteneur dropdown Notre histoire -->
+
+                         <a href="coordonnees.html" class="header-horizontal__link">Nos coordonnées</a>
+                         <!-- Lien simple vers la page Coordonnées (pas de menu déroulant) -->
+
                     </nav>
+                    <!-- Fermeture de la navigation -->
                     
                 </div>
+                <!-- Fermeture de la section de droite -->
                 
             </div>
+            <!-- Fermeture du wrapper -->
+
         </div>
+        <!-- Fermeture du container-fluid -->
+
     </header>
+    <!-- Fermeture du header -->
 
-    <!-- Contenu principal de la page -->
-    <main>
+      <main>
+      <!-- Balise sémantique MAIN : contient le contenu principal de la page -->
+      <!-- Actuellement vide, c'est ici que tu ajouteras le contenu de tes pages -->
+
     </main>
+    <!-- Fermeture du main -->
 
-    <!-- FOOTER avec informations et réseaux sociaux -->
-    <footer class="footer-bg py-5">
-        <div class="container">
-            
-            <!-- Titre animé avec effet machine à écrire et lignes -->
-            <section class="footer-title-wrapper text-center">
+<!--============ FOOTER ===================-->
+<!-- Commentaire indiquant le début de la section footer (pied de page) -->
+
+<footer class="footer-bg py-5">
+<!-- Balise sémantique FOOTER : indique que c'est le pied de page -->
+<!-- class="footer-bg" : applique la couleur de fond turquoise (définie dans styles.css) -->
+<!-- py-5 : classe Bootstrap qui ajoute du padding vertical (haut et bas) -->
+<!-- py = "padding y-axis" (padding sur l'axe vertical) -->
+<!-- Le chiffre 5 correspond à 3rem (48px) en Bootstrap -->
+
+    <div class="container">
+    <!-- DIV avec classe Bootstrap "container" -->
+    <!-- container = conteneur avec largeur maximale responsive (s'adapte à la taille d'écran) -->
+    <!-- Sur grand écran : max-width: 1140px -->
+    <!-- Contrairement à container-fluid, container a des marges latérales -->
+
+         
+        <section class="footer-title-wrapper text-center">
+        <!-- Balise sémantique SECTION : regroupe un contenu thématique -->
+        <!-- footer-title-wrapper : classe personnalisée pour le titre avec animation -->
+        <!-- text-center : classe Bootstrap qui centre le texte horizontalement -->
+
                 <h2 class="display-6 fw-bold"><span class="typewriter" id="typewriter-text">Merci de faire partie de notre aventure !</span></h2>
-            </section>
-            
-            <!-- Grille Bootstrap 4 colonnes : Logo + 3 menus -->
-            <section class="row g-4 mb-4">
-                <div class="col-md-3 col-6">
-                    <img src="assets/images/logo.png" alt="Logo Truffe Gourmande" class="img-fluid" style="max-height: 13.75rem;">
-                </div>
-                
-                <div class="col-md-3 col-6">
-                    <h3 class="fw-bold mb-3">Navigation</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="index.html" class="text-decoration-none fw-semibold">Accueil</a></li>
-                        <li class="mb-2"><a href="boutique.html" class="text-decoration-none fw-semibold">Boutique</a></li>
-                        <li class="mb-2"><a href="notre-histoire.html" class="text-decoration-none fw-semibold">Notre histoire</a></li>
-                        <li class="mb-2"><a href="contact.html" class="text-decoration-none fw-semibold">Infolettre</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-md-3 col-6">
-                    <h3 class="fw-bold mb-3">Informations</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="expedition.html" class="text-decoration-none fw-semibold">Livraison</a></li>
-                        <li class="mb-2"><a href="politiques.html" class="text-decoration-none fw-semibold">Politique de retour</a></li>
-                        <li class="mb-2"><a href="faq.html" class="text-decoration-none fw-semibold">FAQ</a></li>
-                        <li class="mb-2"><a href="confidentialite.html" class="text-decoration-none fw-semibold">Confidentialité</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-md-3 col-6">
-                    <h3 class="fw-bold mb-3">Nos coordonnées</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="mailto:info@truffegourmande.com" class="text-decoration-none fw-semibold">info@truffegourmande.com</a></li>
-                        <li class="mb-2 fw-semibold">Mascouche, Qc, Canada</li>
-                        <li class="mb-2"><a href="tel:4504001199" class="text-decoration-none fw-semibold">(450) 400-1199</a></li>
-                    </ul>
-                </div>
-            </section>
+                <!-- H2 : titre de niveau 2 (moins important que H1) -->
+                <!-- display-6 : classe Bootstrap pour un titre très grand (taille display) -->
+                <!-- fw-bold : classe Bootstrap, fw = "font-weight" (graisse de police), bold = gras -->
+                <!-- SPAN avec classe "typewriter" : applique l'effet de machine à écrire (animation CSS) -->
+                <!-- id="typewriter-text" : identifiant unique pour cibler cet élément -->
 
-            <!-- Réseaux sociaux entre deux lignes horizontales -->
-            <section class="footer-social-divider">
-                <div class="footer-social-content">
-                    <h3 class="fw-bold">Suivez-nous sur les réseaux</h3>
-                    <div class="footer-social-icons">
-                        <a href="https://www.shopify.com/" target="_blank" rel="noopener" aria-label="Shopify">
-                            <img src="assets/images/icone-shop.png" alt="Shopify">
-                        </a>
-                        <a href="https://www.instagram.com/truffe.gourmande/" target="_blank" rel="noopener" aria-label="Instagram">
-                            <img src="assets/images/icone-instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.facebook.com/truffegourmande" target="_blank" rel="noopener" aria-label="Facebook">
-                            <img src="assets/images/icone-facebook.png" alt="Facebook">
-                        </a>
-                    </div>
-                </div>
             </section>
-            
-            <!-- Copyright -->
-            <div class="text-center pt-4">
-                <p class="mb-0 fw-semibold">&copy; 2025 Truffe Gourmande. Tous droits réservés.</p>
+            <!-- Fermeture de la section titre -->
+        
+        <section class="row g-4 mb-4 align-items-center">
+        <!-- SECTION avec classes Bootstrap pour créer une grille -->
+        <!-- row : classe Bootstrap qui crée une ligne dans le système de grille -->
+        <!-- g-4 : gutter (espacement) de niveau 4 entre les colonnes (1.5rem = 24px) -->
+        <!-- mb-4 : margin-bottom (marge en bas) de niveau 4 (1.5rem = 24px) -->
+        <!-- align-items-center : aligne verticalement les éléments au centre -->
+
+            <div class="col-md-3 col-6">
+            <!-- DIV avec classes Bootstrap pour créer une colonne -->
+            <!-- col-md-3 : sur écran moyen (md = medium, ≥768px), prend 3 colonnes sur 12 (25% de largeur) -->
+            <!-- col-6 : sur petit écran (mobile), prend 6 colonnes sur 12 (50% de largeur) -->
+            <!-- Bootstrap utilise un système de 12 colonnes -->
+
+                <img src="assets/images/logo.png" alt="Logo Truffe Gourmande" class="img-fluid" style="max-height: 13.75rem;">
+                <!-- Image du logo dans le footer -->
+                <!-- img-fluid : classe Bootstrap qui rend l'image responsive (max-width: 100%) -->
+                <!-- style="max-height: 13.75rem;" : attribut inline qui limite la hauteur à 220px -->
+                <!-- Cet attribut inline surcharge les styles CSS (à utiliser avec modération) -->
+
             </div>
-        </div>
-    </footer>
+            <!-- Fermeture de la colonne logo -->
 
-    <!-- Scripts chargés à la fin pour meilleure performance -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/index.js"></script>
+            
+
+            <div class="col-md-3 col-6">
+            <!-- Deuxième colonne : menu Navigation -->
+
+                <h3 class="h5 fw-bold mb-3">Navigation</h3>
+                <!-- H3 : titre de niveau 3 -->
+                <!-- h5 : classe Bootstrap qui donne la taille d'un H5 tout en restant un H3 (pour la sémantique) -->
+                <!-- fw-bold : gras -->
+                <!-- mb-3 : margin-bottom de niveau 3 (1rem = 16px) -->
+
+                <ul class="list-unstyled">
+                <!-- UL : liste non ordonnée (unordered list) - avec puces par défaut -->
+                <!-- list-unstyled : classe Bootstrap qui enlève les puces et le padding par défaut -->
+
+                    <li class="mb-2"><a href="index.html" class="text-dark text-decoration-none fw-semibold">Accueil</a></li>
+                    <!-- LI : élément de liste (list item) -->
+                    <!-- mb-2 : margin-bottom de niveau 2 (0.5rem = 8px) -->
+                    <!-- A : lien hypertexte -->
+                    <!-- text-dark : classe Bootstrap pour texte de couleur sombre (proche du noir) -->
+                    <!-- text-decoration-none : enlève le soulignement du lien -->
+                    <!-- fw-semibold : graisse semi-bold (600) -->
+
+                    <li class="mb-2"><a href="boutique.html" class="text-dark text-decoration-none fw-semibold">Boutique</a></li>
+                    <!-- Élément de liste pour Boutique -->
+
+                    <li class="mb-2"><a href="notre-histoire.html" class="text-dark text-decoration-none fw-semibold">Notre histoire</a></li>
+                    <!-- Élément de liste pour Notre histoire -->
+
+                    <li class="mb-2"><a href="contact.html" class="text-dark text-decoration-none fw-semibold">Infolettre</a></li>
+                    <!-- Élément de liste pour Infolettre -->
+
+                </ul>
+                <!-- Fermeture de la liste Navigation -->
+
+            </div>
+            <!-- Fermeture de la colonne Navigation -->
+
+            <div class="col-md-3 col-6">
+            <!-- Troisième colonne : menu Informations -->
+
+                <h3 class="h5 fw-bold mb-3">Informations</h3>
+                <!-- Titre Informations -->
+
+                <ul class="list-unstyled">
+                <!-- Liste sans puces -->
+
+                    <li class="mb-2"><a href="expedition.html" class="text-dark text-decoration-none fw-semibold">Livraison</a></li>
+                    <!-- Lien vers page Livraison -->
+
+                    <li class="mb-2"><a href="politiques.html" class="text-dark text-decoration-none fw-semibold">Politique de retour</a></li>
+                    <!-- Lien vers Politique de retour -->
+
+                    <li class="mb-2"><a href="faq.html" class="text-dark text-decoration-none fw-semibold">FAQ</a></li>
+                    <!-- Lien vers FAQ (Frequently Asked Questions = Foire Aux Questions) -->
+
+                    <li class="mb-2"><a href="confidentialite.html" class="text-dark text-decoration-none fw-semibold">Confidentialité</a></li>
+                    <!-- Lien vers page Confidentialité -->
+
+                </ul>
+                <!-- Fermeture de la liste Informations -->
+
+            </div>
+            <!-- Fermeture de la colonne Informations -->
+
+            <div class="col-md-3 col-6">
+            <!-- Quatrième colonne : Coordonnées -->
+
+                    <h3 class="h5 fw-bold mb-3">Nos coordonnées</h3>
+                    <!-- Titre Nos coordonnées -->
+
+                    <ul class="list-unstyled">
+                    <!-- Liste sans puces pour les coordonnées -->
+
+                        <li class="mb-2"><a href="mailto:info@truffegourmande.com" class="text-dark text-decoration-none fw-semibold">info@truffegourmande.com</a></li>
+                        <!-- Lien email -->
+                        <!-- mailto: ouvre le logiciel de mail par défaut avec cette adresse pré-remplie -->
+
+                        <li class="mb-2 text-dark fw-semibold">Mascouche, Qc, Canada</li>
+                        <!-- Adresse (pas un lien, juste du texte) -->
+
+                        <li class="mb-2"><a href="tel:4504001199" class="text-dark text-decoration-none fw-semibold">(450) 400-1199</a></li>
+                        <!-- Lien téléphone -->
+                        <!-- tel: ouvre l'application téléphone sur mobile avec le numéro pré-rempli -->
+
+                    </ul>
+                    <!-- Fermeture de la liste Coordonnées -->
+
+                </div>
+                <!-- Fermeture de la colonne Coordonnées -->
+
+        </section>
+        <!-- Fermeture de la section grille -->
+
+         <section class="footer-social-divider">
+         <!-- Section pour les réseaux sociaux -->
+         <!-- footer-social-divider : classe personnalisée qui ajoute des lignes au-dessus et en-dessous -->
+
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <!-- DIV avec classes Bootstrap pour flexbox -->
+            <!-- d-flex : active flexbox (display: flex) -->
+            <!-- align-items-center : aligne verticalement au centre -->
+            <!-- justify-content-between : espace maximum entre le titre et les icônes -->
+            <!-- flex-wrap : permet aux éléments de passer à la ligne sur petit écran -->
+            <!-- gap-3 : espace de 1rem (16px) entre les éléments -->
+
+                <h3 class="h5 fw-bold mb-0">Suivez-nous sur les réseaux</h3>
+                <!-- Titre pour les réseaux sociaux -->
+                <!-- mb-0 : margin-bottom de 0 (pas de marge en bas) -->
+
+                <div class="d-flex gap-3">
+                <!-- Conteneur flex pour les icônes de réseaux sociaux -->
+                <!-- gap-3 : espace de 1rem entre chaque icône -->
+
+                    <a href="#" aria-label="Shopify">
+                    <!-- Lien vers la boutique Shopify -->
+                    <!-- href="#" : lien temporaire (à remplacer par la vraie URL) -->
+                    <!-- aria-label : étiquette pour accessibilité (lecteurs d'écran) -->
+
+                        <img src="assets/images/icone-shop.png" alt="Shopify" style="height: 3.5rem;">
+                        <!-- Icône Shopify -->
+                        <!-- style="height: 3.5rem;" : hauteur de 56px (attribut inline) -->
+
+                    </a>
+                    <!-- Fermeture du lien Shopify -->
+
+                    <a href="#" aria-label="Instagram">
+                    <!-- Lien vers Instagram -->
+
+                        <img src="assets/images/icone-instagram.png" alt="Instagram" style="height: 3.5rem;">
+                        <!-- Icône Instagram (hauteur 56px) -->
+
+                    </a>
+                    <!-- Fermeture du lien Instagram -->
+
+                    <a href="#" aria-label="Facebook">
+                    <!-- Lien vers Facebook -->
+
+                        <img src="assets/images/icone-facebook.png" alt="Facebook" style="height: 3.5rem;">
+                        <!-- Icône Facebook (hauteur 56px) -->
+
+                    </a>
+                    <!-- Fermeture du lien Facebook -->
+
+                </div>
+                <!-- Fermeture du conteneur des icônes sociales -->
+
+            </div>
+            <!-- Fermeture du conteneur flex principal -->
+
+         </section>
+         <!-- Fermeture de la section réseaux sociaux -->
+
+        <div class="text-center pt-4">
+        <!-- DIV pour le copyright -->
+        <!-- text-center : texte centré -->
+        <!-- pt-4 : padding-top (espace en haut) de niveau 4 (1.5rem = 24px) -->
+
+            <p class="mb-0">&copy; 2025 Truffe Gourmande. Tous droits réservés.</p>
+            <!-- P : paragraphe -->
+            <!-- mb-0 : pas de marge en bas -->
+            <!-- &copy; : entité HTML pour le symbole copyright © -->
+            <!-- Les entités HTML commencent par & et se terminent par ; -->
+
+        </div>
+        <!-- Fermeture de la div copyright -->
+
+    </div>
+    <!-- Fermeture du container -->
+
+</footer>
+<!-- Fermeture du footer -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Lien vers le fichier JavaScript de Bootstrap -->
+<!-- Ce fichier contient tout le code JavaScript nécessaire pour les composants Bootstrap -->
+<!-- bundle.min.js = version qui inclut aussi Popper.js (pour les dropdowns, tooltips, etc.) -->
+<!-- min.js = version minifiée (compressée) pour un chargement plus rapide -->
+<!-- IMPORTANT : Ce script doit être chargé AVANT ton script personnalisé -->
+
+<script src="assets/js/index.js"></script>
+<!-- Lien vers TON fichier JavaScript personnalisé -->
+<!-- Ce fichier contient ton code pour la barre de recherche et le smooth scroll -->
+<!-- Il est chargé APRÈS Bootstrap pour pouvoir utiliser ses fonctionnalités -->
 
 </body>
+<!-- Fermeture du body -->
+
 </html>
+<!-- Fermeture de la balise html -->

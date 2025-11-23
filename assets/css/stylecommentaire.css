@@ -1,536 +1,1131 @@
-/* ============================================
-   RÈGLES GLOBALES
-   ============================================ */
+/*============ BONNES PRATIQUES ==========*/
+/* Commentaire CSS : commence par /* et se termine par */ */
+/* Ce commentaire sert de séparateur visuel pour organiser le code */
 
-/* Applique box-sizing à tous les éléments */
-/* EFFET : Les paddings et borders sont inclus dans la largeur/hauteur */
 * {
+/* * = sélecteur universel : cible TOUS les éléments HTML de la page */
+/* C'est comme dire "pour chaque élément sans exception" */
+
   box-sizing: border-box;
-}
+  /* box-sizing: border-box signifie que la largeur et hauteur incluent le padding et la border */
+  /* Exemple : si tu mets width: 100px et padding: 10px */
+  /* SANS box-sizing: taille finale = 120px (100 + 10 de chaque côté) */
+  /* AVEC box-sizing: taille finale = 100px (le padding est inclus dedans) */
+  /* C'est ESSENTIEL pour faciliter les calculs de taille et éviter les débordements */
 
-/* Défilement fluide pour les ancres */
-/* EFFET : Quand on clique un lien #ancre, défilement smooth au lieu de saut brusque */
+}
+/* Fermeture de l'accolade du sélecteur universel */
+
 html {
+/* Sélecteur html : cible la balise racine <html> */
+/* Cette règle s'applique à toute la page */
+
   scroll-behavior: smooth;
+  /* scroll-behavior: smooth active le défilement doux/fluide */
+  /* Quand on clique sur un lien d'ancre (#section), la page descend progressivement */
+  /* SANS cette propriété : le défilement est instantané (saut brusque) */
+  /* AVEC : le défilement est animé (effet de glissement) */
+  /* smooth = "doux, fluide" en anglais */
+
 }
+/* Fermeture de la règle html */
 
-/* ============================================
-   VARIABLES CSS
-   ============================================ */
+/*============== VARIABLES ===========*/
+/* Séparateur : section des variables CSS */
 
-/* Variables réutilisables dans tout le CSS */
-/* EFFET : Permet de changer toutes les couleurs/polices en un seul endroit */
 :root {
-    --color-primary: #7aa3a7;        /* Bleu-vert (header et footer) */
-    --color-text: #2C2C2C;           /* Gris foncé (textes) */
-    --color-background: #fdf9f3;     /* Beige crème (fond de page) */
-    --font-heading: 'Dancing Script', cursive;  /* Police titre (script élégant) */
-    --font-body: 'Poppins', sans-serif;         /* Police texte (moderne et lisible) */
-    --font-nav: 'Raleway', sans-serif;          /* Police navigation (propre) */
-}   
+/* :root = pseudo-classe qui cible l'élément racine (html) */
+/* C'est l'endroit IDÉAL pour déclarer des variables CSS globales */
+/* Les variables déclarées ici sont accessibles partout dans le CSS */
 
-/* ============================================
-   STYLES DE BASE
-   ============================================ */
+    --color-primary: #7aa3a7;
+    /* Variable CSS personnalisée pour la couleur principale */
+    /* Les variables CSS commencent TOUJOURS par -- (deux tirets) */
+    /* --color-primary = nom de la variable (tu peux choisir n'importe quel nom) */
+    /* #7aa3a7 = code couleur hexadécimal turquoise/bleu-vert */
+    /* Utilisation : var(--color-primary) partout dans le CSS */
+    /* Avantage : changer UNE fois ici change PARTOUT sur le site */
 
-/* Style du body */
-/* EFFET : Toute la page utilise Poppins, texte gris foncé, fond beige */
+    --color-text: #2C2C2C;
+    /* Variable pour la couleur du texte */
+    /* #2C2C2C = gris très foncé (presque noir) */
+    /* Plus doux pour les yeux que le noir pur #000000 */
+
+    --color-background: #fdf9f3;
+    /* Variable pour la couleur de fond */
+    /* #fdf9f3 = beige très pâle/crème */
+    /* Donne un look chaleureux et naturel au site */
+
+    --font-heading: 'Dancing Script', cursive;
+    /* Variable pour la police des titres */
+    /* 'Dancing Script' = police Google Fonts élégante et manuscrite */
+    /* cursive = police de secours si Dancing Script ne charge pas */
+    /* Les noms de police avec espaces doivent être entre guillemets */
+
+    --font-body: 'Poppins', sans-serif;
+    /* Variable pour la police du texte normal */
+    /* 'Poppins' = police Google Fonts moderne et lisible */
+    /* sans-serif = police de secours (Arial, Helvetica, etc.) */
+    /* sans-serif = "sans empattement" (lettres sans décorations) */
+
+    --font-nav: 'Raleway', sans-serif;
+    /* Variable pour la police de navigation */
+    /* 'Raleway' = police Google Fonts élégante pour les menus */
+
+}
+/* Fermeture des variables */
+
+/*========== STYLE DE BASE POLICES ET COULEURS ===========*/
+/* Séparateur : styles de base du site */
+
 body {
-  font-family: var(--font-body); 
+/* Sélecteur body : cible la balise <body> */
+/* Les styles du body s'appliquent à tout le contenu visible */
+
+  font-family: var(--font-body);
+  /* font-family = police de caractères */
+  /* var(--font-body) = utilise la variable définie plus haut (Poppins) */
+  /* var() = fonction qui récupère la valeur d'une variable CSS */
+
   color: var(--color-text);
+  /* color = couleur du texte */
+  /* Applique le gris foncé (#2C2C2C) à tout le texte du site */
+
   background-color: var(--color-background);
-}
+  /* background-color = couleur de fond */
+  /* Applique le beige pâle (#fdf9f3) à toute la page */
 
-/* Tous les titres utilisent Dancing Script */
-/* EFFET : Titres en style écriture manuscrite élégante, couleur gris foncé */
+}
+/* Fermeture du style body */
+
+/*=========TITRES ===========*/
+/* Séparateur : styles des titres */
+
 h1, h2, h3, h4, h5, h6 {
+/* Sélecteur multiple : cible TOUS les niveaux de titres */
+/* Les virgules signifient "OU" : h1 OU h2 OU h3, etc. */
+/* Permet d'appliquer les mêmes styles à tous les titres en une seule règle */
+
     font-family: var(--font-heading);
+    /* Applique Dancing Script à tous les titres */
+    /* Cette règle SURCHARGE le font-family du body pour les titres seulement */
+
     color: var(--color-text);
+    /* Applique le gris foncé aux titres */
+    /* Même si c'est déjà défini dans body, on le répète pour être certain */
+
 }
+/* Fermeture du style des titres */
 
-/* ============================================
-   HEADER
-   ============================================ */
+/*========== SECTION HEADER =================*/
+/* Séparateur : début des styles du header */
 
-/* Conteneur principal du header */
-/* EFFET : Fond bleu-vert, sans padding */
 .header-horizontal {
-    background-color: var(--color-primary);
-    padding: 0;
-}
+/* Sélecteur de classe : cible les éléments avec class="header-horizontal" */
+/* Le point (.) indique que c'est une classe */
+/* Les classes peuvent être réutilisées sur plusieurs éléments */
 
-/* Wrapper flex pour organiser logo et navigation */
-/* EFFET : Logo à gauche, navigation à droite, alignés verticalement au centre */
+    background-color: var(--color-primary);
+    /* Couleur de fond turquoise (#7aa3a7) pour tout le header */
+
+    padding: 0;
+    /* padding: 0 enlève tout l'espace intérieur */
+    /* padding = "rembourrage" en anglais */
+    /* Ici à 0 car on gère l'espacement dans les éléments enfants */
+
+}
+/* Fermeture du style header-horizontal */
+
 .header-horizontal__wrapper {
-    display: flex;
-    align-items: center;
-    padding: 0.9375rem 1.875rem;  /* 15px 30px */
-    gap: 0;  
-}
+/* Convention BEM : __ (double underscore) indique un élément enfant */
+/* wrapper = "enveloppe" qui contient le logo et le menu */
 
-/* Section du logo */
-/* EFFET : Logo ne se compresse jamais */
+    display: flex;
+    /* display: flex active Flexbox */
+    /* Flexbox = système de mise en page qui aligne les éléments facilement */
+    /* Les enfants directs deviennent des "flex items" */
+    /* RÉSULTAT : le logo et la partie droite se placent côte à côte horizontalement */
+
+    align-items: center;
+    /* align-items: center aligne verticalement au centre */
+    /* Le logo et le menu sont alignés sur leur axe vertical central */
+    /* RÉSULTAT : tout est bien centré verticalement */
+
+    padding: 0.9375rem 1.875rem;
+    /* padding avec 2 valeurs : vertical horizontal */
+    /* 0.9375rem (15px) en haut et en bas */
+    /* 1.875rem (30px) à gauche et à droite */
+    /* rem = unité relative à la taille de police du navigateur (16px par défaut) */
+    /* 1rem = 16px, donc 0.9375rem = 15px et 1.875rem = 30px */
+
+    gap: 0;
+    /* gap: 0 = pas d'espace entre les éléments flex */
+    /* On gère l'espacement autrement (avec margin-left) */
+
+}
+/* Fermeture du style wrapper */
+
 .header-horizontal__logo-section {
-    flex-shrink: 0;
-}
+/* Section qui contient le logo */
 
-/* Image du logo */
-/* EFFET : Logo hauteur 138.4px (8.65rem), largeur auto pour garder proportions */
+    flex-shrink: 0;
+    /* flex-shrink: 0 empêche cet élément de rétrécir */
+    /* Même si l'espace manque, le logo garde sa taille */
+    /* Par défaut, les flex items peuvent rétrécir (flex-shrink: 1) */
+    /* RÉSULTAT : le logo ne sera jamais écrasé */
+
+}
+/* Fermeture du style logo-section */
+
 .header-horizontal__logo {
+/* Style de l'image du logo */
+
     height: 8.65rem;
+    /* height = hauteur fixe de 138.4px */
+    /* 8.65rem × 16px = 138.4px */
+
     width: auto;
-    display: block;
-}
+    /* width: auto conserve les proportions de l'image */
+    /* Si tu fixes seulement la hauteur, la largeur s'ajuste automatiquement */
+    /* RÉSULTAT : l'image ne se déforme pas */
 
-/* Section droite (icônes + nav) */
-/* EFFET : Prend tout l'espace disponible, organisé en colonne */
+    display: block;
+    /* display: block transforme l'image en élément block */
+    /* Par défaut, les images sont inline (peuvent avoir un petit espace en dessous) */
+    /* block enlève cet espace indésirable */
+
+}
+/* Fermeture du style logo */
+
 .header-horizontal__right {
+/* Section de droite (icônes + navigation) */
+
     flex: 1;
+    /* flex: 1 = raccourci pour flex-grow: 1 */
+    /* flex-grow: 1 signifie "prends tout l'espace disponible" */
+    /* Le logo a une taille fixe, cette section prend le reste */
+    /* RÉSULTAT : cette section pousse le logo à gauche et remplit l'espace à droite */
+
     display: flex;
+    /* Active Flexbox pour les enfants de cette section */
+
     flex-direction: column;
-    margin-left: 1.8rem;  /* 28.8px */
-}
+    /* flex-direction: column empile les enfants verticalement */
+    /* Par défaut, flex empile horizontalement (row) */
+    /* column = "colonne" en anglais */
+    /* RÉSULTAT : les icônes sont au-dessus, la navigation en dessous */
 
-/* Top section (icônes) */
-/* EFFET : Espace sous les icônes avant la ligne de séparation */
+    margin-left: 1.8rem;
+    /* margin-left: 1.8rem (28.8px) crée l'espace entre le logo et cette section */
+
+}
+/* Fermeture du style right */
+
 .header-horizontal__top {
-    padding-bottom: 0.5rem;  /* 8px */
-}
+/* Partie supérieure (contient les icônes) */
 
-/* Conteneur des icônes */
-/* EFFET : Icônes alignées à droite avec espacement de 19.2px entre elles */
+    padding-bottom: 0.5rem;
+    /* padding-bottom: 0.5rem (8px) ajoute de l'espace en bas */
+    /* Crée de l'air entre les icônes et la ligne de séparation */
+
+}
+/* Fermeture du style top */
+
 .header-horizontal__icons {
-    display: flex;
-    justify-content: flex-end; 
-    align-items: center;
-    gap: 1.2rem;  /* 19.2px */
-} 
+/* Conteneur des icônes (recherche, compte, panier) */
 
-/* Style d'une icône */
-/* EFFET : Icône clickable avec transition smooth, grossit de 10% au survol */
+    display: flex;
+    /* Active Flexbox pour aligner les icônes */
+
+    justify-content: flex-end;
+    /* justify-content: flex-end aligne les éléments à droite */
+    /* flex-end = "fin flexible" = côté droit en flexbox */
+    /* RÉSULTAT : les icônes sont collées à droite */
+
+    align-items: center;
+    /* Aligne les icônes verticalement au centre */
+
+    gap: 1.2rem;
+    /* gap: 1.2rem (19.2px) ajoute de l'espace entre chaque icône */
+    /* gap est plus simple que margin car il espace automatiquement */
+
+}
+/* Fermeture du style icons */
+
 .header-horizontal__icon {
-    color: var(--color-text); 
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-}
+/* Style pour chaque icône (lien cliquable) */
 
-/* Hover sur icône */
-/* EFFET : Icône devient noire et 10% plus grande au survol */
-.header-horizontal__icon:hover {
-    color: #000000; 
-    transform: scale(1.1);
-}
-
-/* Images des icônes */
-/* EFFET : Icônes 40x40px (2.5rem) */
-.header-horizontal__icon img {
-    width: 2.5rem; 
-    height: 2.5rem;
-}
-
-/* Ligne de séparation noire */
-/* EFFET : Ligne horizontale noire de 2px entre icônes et navigation */
-.header-horizontal__separator {
-    height: 0.125rem;  /* 2px */
-    background-color: black;
-    width: 100%;
-    margin: 0;  
-}
-
-/* Navigation principale */
-/* EFFET : Liens centrés horizontalement avec espacement de 54.4px */
-.header-horizontal__nav {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    gap: 3.4rem;  /* 54.4px */
-    padding-top: 0.625rem;  /* 10px */
-}
-
-/* Style d'un lien de navigation */
-/* EFFET : Liens noirs, police Raleway 19px, transition smooth */
-.header-horizontal__link {
-   color: black;
-   text-decoration: none; 
-   font-family: var(--font-nav);
-   font-weight: 500;
-   font-size: 1.1875rem;  /* 19px */
-   padding: 0.3125rem 0;  /* 5px */
-   transition: all 0.3s ease; 
-   white-space: nowrap; 
-   position: relative; 
-   display: flex;
-   align-items: center;
-   gap: 0.3125rem;  /* 5px entre texte et flèche */
-}
-
-/* Hover sur lien de navigation */
-/* EFFET : Lien devient blanc au survol */
-.header-horizontal__link:hover {
-    color: white;
-}
-
-/* Lien actif (page actuelle) */
-/* EFFET : Lien en gras (800) et noir pour indiquer page actuelle */
-.header-horizontal__link--active {
-    color: #000000;
-    font-weight: 800;
-}
-
-/* Flèche des dropdowns */
-/* EFFET : Petite flèche 14px (0.875rem) qui tourne au survol */
-.header-horizontal__arrow {
-    font-size: 0.875rem;  /* 14px */
-    display: inline-block;
-    transition: transform 0.3s ease;
-}  
-
-/* Rotation de la flèche au survol du dropdown */
-/* EFFET : Flèche fait une rotation de 180° quand on survole le menu */
-.header-horizontal__dropdown:hover .header-horizontal__arrow {
-    transform: rotate(180deg);
-}
-
-/* Conteneur dropdown */
-/* EFFET : Position relative pour que le menu soit positionné par rapport à lui */
-.header-horizontal__dropdown {
-    position: relative;
-}
-
-/* Menu déroulant caché par défaut */
-/* EFFET : Menu blanc avec ombre, coins arrondis, apparaît sous le lien parent */
-.header-horizontal__dropdown-menu {
-    display: none;
-    position: absolute; 
-    top: 100%;  /* Sous le lien parent */
-    left: 0; 
-    background-color: white;
-    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);  /* Ombre 4px 10px */
-    border-radius: 0.25rem;  /* Coins arrondis 4px */
-    padding: 0.625rem 0;  /* 10px vertical */
-    min-width: 11.25rem;  /* 180px minimum */
-    z-index: 1000; 
-}
-
-/* Afficher le menu au survol */
-/* EFFET : Menu apparaît quand on survole le dropdown */
-.header-horizontal__dropdown:hover .header-horizontal__dropdown-menu {
-    display: block;
-}
-
-/* Liens dans le menu déroulant */
-/* EFFET : Liens en blocs avec padding, police Raleway gras 16px */
-.header-horizontal__dropdown-menu a {
-    display: block; 
-    padding: 0.625rem 1.25rem;  /* 10px 20px */
     color: var(--color-text);
-    text-decoration: none; 
-    font-family: var(--font-nav);
-    font-weight: 600; 
-    font-size: 1rem;  /* 16px */
-    transition: background-color 0.3s ease;
-}
+    /* Couleur du texte (si jamais il y a du texte) */
 
-/* Hover sur lien du dropdown */
-/* EFFET : Fond devient bleu-vert et texte blanc au survol */
-.header-horizontal__dropdown-menu a:hover {
-    background-color: var(--color-primary);
-    color: white; 
-}
+    text-decoration: none;
+    /* text-decoration: none enlève le soulignement des liens */
+    /* Par défaut, les liens sont soulignés */
 
-/* ============================================
-   BARRE DE RECHERCHE
-   ============================================ */
+    transition: all 0.3s ease;
+    /* transition anime les changements de propriétés */
+    /* all = toutes les propriétés (color, transform, etc.) */
+    /* 0.3s = durée de 0.3 secondes */
+    /* ease = courbe d'animation (démarrage et fin doux) */
+    /* RÉSULTAT : le survol est animé et fluide, pas brusque */
 
-/* Barre de recherche cachée par défaut */
-/* EFFET : Invisible, largeur 0, apparaît avec animation smooth quand classe "show" ajoutée */
-.header-horizontal__search {
-    display: none !important;
-    opacity: 0;
-    max-width: 0;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    align-items: center;
-    gap: 0.5rem;  /* 8px entre input et bouton */
-}
-
-/* Barre de recherche visible */
-/* EFFET : Apparaît avec largeur max 350px, opacity 100% */
-.header-horizontal__search.show {
-    display: flex !important;
-    opacity: 1;
-    max-width: 350px;
-}
-
-/* Input de recherche */
-/* EFFET : Champ arrondi avec border noir 2px, padding confortable */
-.header-horizontal__search-input {
-    width: 100%;
-    padding: 0.5rem 1rem;  /* 8px 16px */
-    border: 2px solid black;
-    border-radius: 25px;
-    font-family: var(--font-body);
-    font-size: 0.9rem;  /* 14.4px */
-    outline: none;
-}
-
-/* Input focus */
-/* EFFET : Border reste noir, ombre légère apparaît autour du champ */
-.header-horizontal__search-input:focus {
-    border-color: #000;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Bouton loupe rose */
-/* EFFET : Cercle rose 48x48px avec loupe blanche au centre, cliquable */
-.header-horizontal__search-button {
-    width: 3rem;  /* 48px */
-    height: 3rem;  /* 48px */
-    background-color: #e8a5a5;  /* Rose */
-    border-radius: 50%;  /* Forme ronde */
     display: flex;
+    /* Active Flexbox pour centrer l'image à l'intérieur */
+
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    /* Centre l'image verticalement */
+
 }
+/* Fermeture du style icon */
 
-/* Hover sur bouton loupe */
-/* EFFET : Rose devient légèrement plus foncé au survol */
-.header-horizontal__search-button:hover {
-    background-color: #d89090;
+.header-horizontal__icon:hover {
+/* :hover = pseudo-classe qui s'active au survol de la souris */
+/* Ces styles s'appliquent UNIQUEMENT quand la souris survole l'icône */
+
+    color: #000000;
+    /* Change la couleur en noir pur au survol */
+
+    transform: scale(1.1);
+    /* transform: scale(1.1) agrandit l'élément de 10% */
+    /* scale = "échelle" en anglais */
+    /* 1 = taille normale, 1.1 = 110% de la taille */
+    /* RÉSULTAT : l'icône grossit légèrement au survol (effet zoom) */
+
 }
+/* Fermeture du style hover */
 
-/* Icône dans le bouton */
-/* EFFET : Loupe 24x24px en blanc (filter invert) */
-.header-horizontal__search-button img {
-    width: 1.5rem;  /* 24px */
-    height: 1.5rem;  /* 24px */
-    filter: brightness(0) invert(1);  /* Rend l'image blanche */
+.header-horizontal__icon img {
+/* Sélecteur descendant : cible les images DANS les icônes */
+/* L'espace entre .icon et img signifie "à l'intérieur de" */
+
+    width: 2.5rem;
+    /* Largeur fixe de 40px (2.5 × 16) */
+
+    height: 2.5rem;
+    /* Hauteur fixe de 40px */
+    /* RÉSULTAT : toutes les icônes ont exactement la même taille */
+
 }
+/* Fermeture du style pour les images d'icônes */
 
-/* ============================================
-   FOOTER
-   ============================================ */
+.header-horizontal__separator {
+/* Ligne de séparation horizontale */
 
-/* Fond du footer */
-/* EFFET : Fond bleu-vert identique au header */
-.footer-bg {
-    background-color: var(--color-primary);
-}
+    height: 0.125rem;
+    /* Hauteur de 2px (0.125 × 16) */
+    /* Une ligne très fine */
 
-/* Wrapper du titre animé */
-/* EFFET : Conteneur pour le titre et les lignes animées, centré */
-.footer-title-wrapper {
-    position: relative;
-    text-align: center;
-    margin-bottom: 3rem;  /* 48px sous le titre */
+    background-color: black;
+    /* Couleur noire pour la ligne */
+
     width: 100%;
-    padding: 0;
-}
+    /* Largeur de 100% = prend toute la largeur disponible */
 
-/* Lignes avant et après le titre */
-/* EFFET : Lignes horizontales de 2px de chaque côté du titre */
+    margin: 0;
+    /* margin: 0 enlève toute marge autour de la ligne */
+
+}
+/* Fermeture du style separator */
+
+.header-horizontal__nav {
+/* Menu de navigation */
+
+    display: flex;
+    /* Active Flexbox pour aligner les liens */
+
+    justify-content: center;
+    /* justify-content: center centre les liens horizontalement */
+    /* RÉSULTAT : les liens du menu sont au centre */
+
+    align-items: center;
+    /* Aligne les liens verticalement au centre */
+
+    gap: 3.4rem;
+    /* Espace de 54.4px entre chaque lien du menu */
+    /* Un espace généreux pour un look aéré */
+
+    padding-top: 0.625rem;
+    /* padding-top: 0.625rem (10px) ajoute de l'espace au-dessus du menu */
+    /* Crée de l'air entre la ligne de séparation et les liens */
+
+}
+/* Fermeture du style nav */
+
+.header-horizontal__link {
+/* Style des liens du menu de navigation */
+
+   color: black;
+   /* Couleur noire pour le texte des liens */
+
+   text-decoration: none;
+   /* Enlève le soulignement des liens */
+
+   font-family: var(--font-nav);
+   /* Utilise la police Raleway pour la navigation */
+
+   font-weight: 500;
+   /* font-weight: 500 = graisse medium */
+   /* Échelle : 100 (ultra-light) à 900 (ultra-bold) */
+   /* 400 = normal, 500 = medium, 600 = semi-bold, 700 = bold */
+
+   font-size: 1.1875rem;
+   /* Taille de police de 19px (1.1875 × 16) */
+   /* Légèrement plus grand que le texte normal */
+
+   padding: 0.3125rem 0;
+   /* padding: 0.3125rem (5px) en haut et en bas, 0 à gauche et droite */
+   /* Agrandit la zone cliquable du lien */
+
+   transition: all 0.3s ease;
+   /* Anime tous les changements (couleur, transform) */
+
+   white-space: nowrap;
+   /* white-space: nowrap empêche le texte de passer à la ligne */
+   /* "nowrap" = "pas de retour à la ligne" */
+   /* RÉSULTAT : "Notre histoire" reste sur une seule ligne */
+
+   position: relative;
+   /* position: relative permet de positionner des éléments enfants en absolu */
+   /* Nécessaire pour le menu déroulant qui utilise position: absolute */
+
+   display: flex;
+   /* Active Flexbox pour aligner le texte et la flèche */
+
+   align-items: center;
+   /* Centre verticalement le texte et la flèche */
+
+   gap: 0.3125rem;
+   /* Espace de 5px entre le texte et la flèche */
+
+}
+/* Fermeture du style link */
+
+.header-horizontal__link:hover {
+/* Style au survol des liens */
+
+    color: white;
+    /* Change la couleur en blanc au survol */
+    /* RÉSULTAT : effet de changement de couleur visible */
+
+}
+/* Fermeture du style hover link */
+
+.header-horizontal__link--active {
+/* Classe modifier (--) pour le lien de la page active */
+/* Convention BEM : -- indique une variation ou un état */
+
+    color: #000000;
+    /* Couleur noir foncé pour la page actuelle */
+
+    font-weight: 800;
+    /* font-weight: 800 = extra-bold (très gras) */
+    /* RÉSULTAT : le lien de la page actuelle est très visible */
+
+}
+/* Fermeture du style active */
+
+.header-horizontal__arrow {
+/* Style de la flèche dans les menus déroulants */
+
+    font-size: 0.875rem;
+    /* Taille de police de 14px (0.875 × 16) */
+    /* Plus petit que le texte du lien */
+
+    display: inline-block;
+    /* display: inline-block permet d'appliquer transform */
+    /* inline seul ne permet pas transform */
+    /* block prendrait toute la largeur */
+
+    transition: transform 0.3s ease;
+    /* Anime uniquement la transformation (rotation) */
+
+}
+/* Fermeture du style arrow */
+
+.header-horizontal__dropdown:hover .header-horizontal__arrow {
+/* Sélecteur complexe : au survol du dropdown, cible la flèche */
+/* :hover s'applique au dropdown */
+/* L'espace signifie "trouve la flèche à l'intérieur" */
+
+    transform: rotate(180deg);
+    /* transform: rotate(180deg) fait pivoter la flèche de 180 degrés */
+    /* deg = degrés */
+    /* 180deg = demi-tour complet */
+    /* RÉSULTAT : la flèche pointe vers le haut quand le menu est ouvert */
+
+}
+/* Fermeture du style hover arrow */
+
+.header-horizontal__dropdown {
+/* Conteneur du menu déroulant */
+
+    position: relative;
+    /* position: relative permet au menu enfant de se positionner par rapport à ce conteneur */
+    /* Le menu déroulant utilise position: absolute et s'alignera sur ce parent */
+
+}
+/* Fermeture du style dropdown */
+
+.header-horizontal__dropdown-menu {
+/* Menu déroulant (liste de liens qui apparaît au survol) */
+
+    display: none;
+    /* display: none cache complètement l'élément */
+    /* L'élément n'occupe aucun espace et est invisible */
+
+    position: absolute;
+    /* position: absolute retire l'élément du flux normal */
+    /* Il se positionne par rapport au parent avec position: relative */
+    /* Ne pousse pas les autres éléments */
+
+    top: 100%;
+    /* top: 100% positionne le menu juste en dessous du parent */
+    /* 100% = la hauteur complète du parent */
+
+    left: 0;
+    /* left: 0 aligne le menu à gauche du parent */
+
+    background-color: white;
+    /* Fond blanc pour le menu déroulant */
+
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);
+    /* box-shadow crée une ombre portée */
+    /* Syntaxe : décalage-x décalage-y flou couleur */
+    /* 0 = pas de décalage horizontal */
+    /* 0.25rem (4px) = décalage vers le bas */
+    /* 0.625rem (10px) = taille du flou */
+    /* rgba(0, 0, 0, 0.15) = noir avec 15% d'opacité */
+    /* RÉSULTAT : ombre douce qui donne de la profondeur */
+
+    border-radius: 0.25rem;
+    /* border-radius: 0.25rem (4px) arrondit les coins */
+    /* RÉSULTAT : coins légèrement arrondis, look moderne */
+
+    padding: 0.625rem 0;
+    /* padding: 0.625rem (10px) en haut et en bas, 0 à gauche et droite */
+
+    min-width: 11.25rem;
+    /* min-width: 11.25rem (180px) = largeur minimale */
+    /* Le menu ne sera jamais plus petit que 180px */
+
+    z-index: 1000;
+    /* z-index: 1000 place l'élément au-dessus des autres */
+    /* Plus le chiffre est élevé, plus l'élément est "devant" */
+    /* RÉSULTAT : le menu s'affiche par-dessus le contenu */
+
+}
+/* Fermeture du style dropdown-menu */
+
+.header-horizontal__dropdown:hover .header-horizontal__dropdown-menu {
+/* Au survol du dropdown, le menu apparaît */
+
+    display: block;
+    /* display: block rend le menu visible */
+    /* Change de none à block au survol */
+    /* RÉSULTAT : le menu apparaît quand la souris passe sur le lien parent */
+
+}
+/* Fermeture du style hover dropdown-menu */
+
+.header-horizontal__dropdown-menu a {
+/* Liens à l'intérieur du menu déroulant */
+
+    display: block;
+    /* display: block fait que chaque lien prend toute la largeur */
+    /* Agrandit la zone cliquable */
+
+    padding: 0.625rem 1.25rem;
+    /* padding: 0.625rem (10px) haut/bas, 1.25rem (20px) gauche/droite */
+    /* Crée un espace confortable autour du texte */
+
+    color: var(--color-text);
+    /* Couleur gris foncé pour le texte */
+
+    text-decoration: none;
+    /* Enlève le soulignement */
+
+    font-family: var(--font-nav);
+    /* Police Raleway */
+
+    font-weight: 600;
+    /* font-weight: 600 = semi-bold */
+
+    font-size: 1rem;
+    /* Taille normale de 16px (1 × 16) */
+
+    transition: background-color 0.3s ease;
+    /* Anime uniquement le changement de couleur de fond */
+
+}
+/* Fermeture du style pour les liens du menu */
+
+.header-horizontal__dropdown-menu a:hover {
+/* Style au survol des liens du menu déroulant */
+
+    background-color: var(--color-primary);
+    /* Fond turquoise au survol */
+
+    color: white;
+    /* Texte blanc au survol */
+    /* RÉSULTAT : effet de surbrillance au survol */
+
+}
+/* Fermeture du style hover pour les liens du menu */
+
+/*============= BARRE DE RECHERCHE ====================*/
+/* Séparateur : styles de la barre de recherche */
+
+.header-horizontal__search {
+/* Conteneur de la barre de recherche */
+
+    display: none;
+    /* display: none cache la barre par défaut */
+
+    opacity: 0;
+    /* opacity: 0 rend l'élément transparent */
+    /* opacity = "opacité" : 0 = invisible, 1 = visible */
+
+    max-width: 0;
+    /* max-width: 0 = largeur maximale de 0px */
+    /* Réduit l'élément à rien */
+
+    overflow: hidden;
+    /* overflow: hidden cache le contenu qui dépasse */
+    /* Empêche la barre de s'afficher même si display change */
+
+    transition: all 0.4s ease;
+    /* Anime tous les changements en 0.4 secondes */
+    /* RÉSULTAT : animation fluide quand la barre apparaît */
+
+    align-items: center;
+    /* Aligne verticalement au centre (quand flex est actif) */
+
+    gap: 0.5rem;
+    /* Espace de 8px entre le champ de saisie et le bouton */
+
+}
+/* Fermeture du style search */
+
+.header-horizontal__search.show {
+/* Classe .show ajoutée par JavaScript pour afficher la barre */
+/* Le point collé signifie "ET" : élément qui a les deux classes */
+
+    display: flex;
+    /* display: flex rend la barre visible et active Flexbox */
+
+    opacity: 1;
+    /* opacity: 1 rend l'élément complètement visible */
+
+    max-width: 350px;
+    /* max-width: 350px donne une largeur maximale */
+    /* RÉSULTAT : la barre s'étend avec une animation fluide */
+
+}
+/* Fermeture du style show */
+
+.header-horizontal__search-input {
+/* Champ de saisie de texte */
+
+    width: 100%;
+    /* width: 100% prend toute la largeur disponible */
+
+    padding: 0.5rem 1rem;
+    /* padding: 0.5rem (8px) haut/bas, 1rem (16px) gauche/droite */
+    /* Crée de l'espace confortable pour taper */
+
+    border: 2px solid black;
+    /* border: 2px solid black = bordure noire de 2px */
+    /* solid = "solide" (ligne continue) */
+    /* Autres options : dashed (tirets), dotted (pointillés) */
+
+    border-radius: 25px;
+    /* border-radius: 25px arrondit beaucoup les coins */
+    /* Forme de "pilule" arrondie */
+
+    font-family: var(--font-body);
+    /* Police Poppins */
+
+    font-size: 0.9rem;
+    /* Taille de 14.4px (0.9 × 16) */
+
+    outline: none;
+    /* outline: none enlève le contour bleu au focus */
+    /* Le contour par défaut des navigateurs est souvent laid */
+
+}
+/* Fermeture du style search-input */
+
+.header-horizontal__search-input:focus {
+/* :focus = pseudo-classe quand l'élément est sélectionné (cliqué) */
+
+    border-color: #000;
+    /* Garde la bordure noire au focus */
+
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    /* box-shadow crée un "contour" doux autour du champ */
+    /* Syntaxe : décalage-x décalage-y flou étendue couleur */
+    /* Les trois premiers 0 = pas de décalage ni de flou */
+    /* 3px = étendue de l'ombre (s'étend vers l'extérieur) */
+    /* rgba(0, 0, 0, 0.1) = noir à 10% d'opacité */
+    /* RÉSULTAT : halo subtil qui indique que le champ est actif */
+
+}
+/* Fermeture du style focus */
+
+.header-horizontal__search-button {
+/* Bouton de recherche rond */
+
+    width: 3rem;
+    /* Largeur de 48px (3 × 16) */
+
+    height: 3rem;
+    /* Hauteur de 48px */
+    /* width = height = forme carrée */
+
+    background-color: #e8a5a5;
+    /* Couleur rose/saumon */
+    /* ATTENTION : le code couleur correct devrait être #d4a59e selon tes exigences */
+    /* #e8a5a5 est plus rose, #d4a59e est plus brun-rose */
+
+    border-radius: 50%;
+    /* border-radius: 50% transforme le carré en cercle parfait */
+    /* 50% = arrondit au maximum */
+
+    display: flex;
+    /* Active Flexbox pour centrer l'icône */
+
+    align-items: center;
+    /* Centre verticalement */
+
+    justify-content: center;
+    /* Centre horizontalement */
+    /* RÉSULTAT : l'icône est parfaitement centrée dans le cercle */
+
+    flex-shrink: 0;
+    /* flex-shrink: 0 empêche le bouton de rétrécir */
+
+    cursor: pointer;
+    /* cursor: pointer change le curseur en main au survol */
+    /* Indique visuellement que c'est cliquable */
+
+    transition: background-color 0.3s ease;
+    /* Anime uniquement le changement de couleur de fond */
+
+}
+/* Fermeture du style search-button */
+
+.header-horizontal__search-button:hover {
+/* Style au survol du bouton */
+
+    background-color: #d89090;
+    /* Couleur rose plus foncée au survol */
+    /* RÉSULTAT : feedback visuel au survol */
+
+}
+/* Fermeture du style hover button */
+
+.header-horizontal__search-button img {
+/* Icône de loupe dans le bouton */
+
+    width: 1.5rem;
+    /* Largeur de 24px (1.5 × 16) */
+
+    height: 1.5rem;
+    /* Hauteur de 24px */
+
+    filter: brightness(0) invert(1);
+    /* filter applique des effets visuels */
+    /* brightness(0) rend l'image noire */
+    /* invert(1) inverse les couleurs (noir devient blanc) */
+    /* RÉSULTAT : l'icône devient blanche peu importe sa couleur d'origine */
+
+}
+/* Fermeture du style pour l'icône du bouton */
+
+/*============= FOOTER ====================*/
+/* Séparateur : début des styles du footer */
+
+.footer-bg {
+/* Classe de base du footer */
+
+    background-color: var(--color-primary);
+    /* Fond turquoise (#7aa3a7) */
+
+}
+/* Fermeture du style footer-bg */
+
+.footer-title-wrapper {
+/* Conteneur du titre avec animation */
+
+    position: relative;
+    /* position: relative permet aux pseudo-éléments ::before et ::after de se positionner par rapport à cet élément */
+
+    text-align: center;
+    /* Centre le texte horizontalement */
+
+    margin-bottom: 3rem;
+    /* Marge de 48px en bas (3 × 16) */
+    /* Crée de l'espace entre le titre et le contenu suivant */
+
+    width: 100%;
+    /* Prend toute la largeur */
+
+    padding: 0;
+    /* Pas de padding */
+
+}
+/* Fermeture du style title-wrapper */
+
 .footer-title-wrapper::before,
 .footer-title-wrapper::after {
+/* ::before et ::after = pseudo-éléments */
+/* Créent des éléments virtuels avant et après le contenu */
+/* La virgule signifie qu'on applique les mêmes styles aux deux */
+
     content: '';
+    /* content: '' = contenu vide mais l'élément existe */
+    /* OBLIGATOIRE pour que les pseudo-éléments s'affichent */
+
     position: absolute;
+    /* position: absolute pour positionner les lignes librement */
+
     top: 50%;
+    /* top: 50% place l'élément au milieu vertical */
+
     transform: translateY(-50%);
+    /* transform: translateY(-50%) remonte l'élément de la moitié de sa hauteur */
+    /* Nécessaire pour centrer parfaitement verticalement */
+    /* translateY = "déplacer sur l'axe Y (vertical)" */
+
     height: 2px;
+    /* Hauteur de 2px pour des lignes fines */
+
     background-color: var(--color-text);
-}
+    /* Couleur gris foncé pour les lignes */
 
-/* Ligne gauche */
-/* EFFET : Part du bord gauche, s'arrête à 0.5rem du texte, rétrécit pendant l'animation */
+}
+/* Fermeture du style pour les pseudo-éléments */
+
 .footer-title-wrapper::before {
+/* Ligne de gauche */
+
     left: 0;
-    right: calc(50% + 0.5rem);  /* 8px d'espace avec le texte */
+    /* Commence au bord gauche */
+
+    right: calc(50% + 0.5rem);
+    /* Se termine au centre + 0.5rem */
+    /* calc() permet de faire des calculs CSS */
+    /* 50% + 0.5rem = centre + 8px */
+    /* Crée un espace de 16px au total (8px de chaque côté du titre) */
+
     transform-origin: left center;
+    /* transform-origin définit le point de pivot de l'animation */
+    /* left center = côté gauche au centre vertical */
+    /* L'animation partira de ce point */
+
     animation: shrink-from-right 3s steps(50) 1s 1 normal forwards;
-}
+    /* animation applique une animation définie plus bas */
+    /* shrink-from-right = nom de l'animation */
+    /* 3s = durée de 3 secondes */
+    /* steps(50) = animation en 50 étapes (effet saccadé, comme une machine à écrire) */
+    /* 1s = délai de 1 seconde avant de démarrer */
+    /* 1 = nombre de répétitions (1 seule fois) */
+    /* normal = direction normale (de 0% à 100%) */
+    /* forwards = garde l'état final de l'animation */
 
-/* Ligne droite */
-/* EFFET : Part du bord droit, s'arrête à 0.5rem du texte, rétrécit pendant l'animation */
+}
+/* Fermeture du style ::before */
+
 .footer-title-wrapper::after {
+/* Ligne de droite */
+
     right: 0;
+    /* Commence au bord droit */
+
     left: calc(50% + 0.5rem);
+    /* Se termine au centre + 0.5rem */
+
     transform-origin: right center;
+    /* Point de pivot à droite au centre */
+
     animation: shrink-from-left 3s steps(50) 1s 1 normal forwards;
-}
+    /* Même animation mais dans l'autre sens */
 
-/* Titre h2 du footer */
-/* EFFET : Texte gris foncé, inline-block pour que les lignes ::before/after se placent correctement */
+}
+/* Fermeture du style ::after */
+
 .footer-bg h2 {
-    color: var(--color-text) !important;
-    margin: 0;
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-}
+/* Titre H2 dans le footer */
 
-/* Span avec effet machine à écrire */
-/* EFFET : Texte s'écrit lettre par lettre avec curseur clignotant (border-right) */
-.footer-bg h2 .typewriter {
+    color: var(--color-text);
+    /* Couleur gris foncé */
+
+    margin: 0;
+    /* Pas de marge */
+
     display: inline-block;
+    /* display: inline-block permet d'avoir une largeur automatique */
+    /* Le titre prend seulement la largeur de son texte */
+
+    position: relative;
+    /* position: relative pour superposer le titre aux lignes */
+
+    z-index: 1;
+    /* z-index: 1 place le titre au-dessus des lignes */
+
+}
+/* Fermeture du style h2 */
+
+.footer-bg h2 .typewriter {
+/* Classe typewriter pour l'effet de machine à écrire */
+
+    display: inline-block;
+    /* Nécessaire pour que width fonctionne sur du texte inline */
+
     overflow: hidden;
+    /* overflow: hidden cache le texte qui dépasse */
+
     white-space: nowrap;
+    /* white-space: nowrap empêche le texte de passer à la ligne */
+    /* ESSENTIEL pour l'effet machine à écrire */
+
     width: 0;
-    border-right: 3px solid var(--color-text);  /* Curseur */
+    /* width: 0 cache tout le texte au départ */
+
+    border-right: 3px solid var(--color-text);
+    /* border-right: 3px crée la "barre de curseur" */
+    /* Simule le curseur qui clignote */
+
     animation: typing 3s steps(50) 1s 1 normal forwards, 
                blink 0.75s step-end 1s 4 normal forwards;
-}
+    /* Deux animations en même temps, séparées par une virgule */
+    /* typing : affiche le texte progressivement */
+    /* blink : fait clignoter le curseur */
+    /* 0.75s = durée d'un cycle de clignotement */
+    /* step-end = saut brusque (pas de transition) */
+    /* 4 = clignote 4 fois */
 
-/* Animation : texte s'écrit */
-/* EFFET : Largeur passe de 0 à 100% en 3 secondes, 50 steps (style machine à écrire) */
+}
+/* Fermeture du style typewriter */
+
 @keyframes typing {
+/* @keyframes définit une animation nommée "typing" */
+/* Décrit les étapes de l'animation */
+
     from {
+    /* from = état de départ (0%) */
         width: 0;
+        /* Commence avec une largeur de 0 (texte caché) */
     }
+
     to {
+    /* to = état final (100%) */
         width: 100%;
+        /* Termine avec largeur complète (texte visible) */
     }
+    /* RÉSULTAT : le texte apparaît progressivement de gauche à droite */
 }
+/* Fermeture de l'animation typing */
 
-/* Animation : curseur clignote */
-/* EFFET : Border droite (curseur) devient transparente pour créer clignotement */
 @keyframes blink {
+/* Animation pour faire clignoter le curseur */
+
     50% {
+    /* À 50% de l'animation */
         border-right-color: transparent;
+        /* Rend le curseur transparent (invisible) */
+        /* RÉSULTAT : effet de clignotement */
     }
 }
+/* Fermeture de l'animation blink */
 
-/* Animation : ligne gauche rétrécit */
-/* EFFET : Ligne rétrécit à 33% de sa taille, côté droit se rapproche du texte */
 @keyframes shrink-from-right {
+/* Animation qui rétrécit la ligne depuis la droite */
+
     0% {
+    /* État de départ */
         transform: translateY(-50%) scaleX(1);
+        /* scaleX(1) = taille normale (100%) sur l'axe X (horizontal) */
     }
+
     100% {
+    /* État final */
         transform: translateY(-50%) scaleX(0.33);
+        /* scaleX(0.33) = rétrécit à 33% de la largeur originale */
+        /* RÉSULTAT : les lignes se rétractent vers le titre */
     }
 }
+/* Fermeture de l'animation shrink-from-right */
 
-/* Animation : ligne droite rétrécit */
-/* EFFET : Ligne rétrécit à 33% de sa taille, côté gauche se rapproche du texte */
 @keyframes shrink-from-left {
+/* Même animation mais depuis la gauche */
+
     0% {
         transform: translateY(-50%) scaleX(1);
+        /* Commence à 100% */
     }
+
     100% {
         transform: translateY(-50%) scaleX(0.33);
+        /* Termine à 33% */
     }
 }
+/* Fermeture de l'animation shrink-from-left */
 
-/* Titres h3 du footer */
-/* EFFET : Police Dancing Script, taille 28.8px (1.8rem), gris foncé */
 .footer-bg h3 {
+/* Titres H3 dans le footer */
+
     font-family: var(--font-heading) !important;
-    font-size: 1.8rem !important;
-    color: var(--color-text) !important;
-}
+    /* font-family avec !important force cette règle */
+    /* !important = priorité absolue, surcharge toutes les autres règles */
+    /* À utiliser avec parcimonie (seulement quand nécessaire) */
 
-/* Colonne du logo */
-/* EFFET : Logo centré verticalement dans sa colonne */
+    font-size: 1.8rem;
+    /* Taille de 28.8px (1.8 × 16) */
+
+    color: var(--color-text);
+    /* Couleur gris foncé */
+
+}
+/* Fermeture du style h3 */
+
+.footer-bg .row.g-4.mb-4 {
+/* Sélecteur multiple de classes : .row ET .g-4 ET .mb-4 */
+/* Le point collé signifie "ET" (l'élément doit avoir toutes ces classes) */
+
+    align-items: flex-start !important;
+    /* align-items: flex-start aligne les éléments en haut */
+    /* flex-start = début de l'axe flex (en haut pour les colonnes) */
+    /* !important force cette règle (probablement pour surcharger Bootstrap) */
+
+}
+/* Fermeture du style row */
+
 .footer-bg .row .col-md-3:first-child {
+/* Sélecteur complexe : dans .footer-bg, trouve .row, puis la première .col-md-3 */
+/* :first-child = pseudo-classe qui cible le premier enfant */
+
     display: flex;
+    /* Active Flexbox */
+
     align-items: center;
+    /* Centre verticalement */
+
     justify-content: center;
-}
+    /* Centre horizontalement */
+    /* RÉSULTAT : le logo est parfaitement centré dans sa colonne */
 
-/* Liens et texte des listes */
-/* EFFET : Tous les liens et textes en gris foncé */
-.footer-bg .list-unstyled a,
-.footer-bg .list-unstyled li {
-    color: var(--color-text) !important;
-}
+    transform: translateY(-1.5rem);
+    /* transform: translateY(-1.5rem) remonte le logo de 24px */
+    /* Valeur négative = vers le haut */
+    /* RÉSULTAT : le logo dépasse légèrement vers le haut */
 
-/* Transition sur liens */
-/* EFFET : Changement de couleur smooth en 0.3s */
-.footer-bg .list-unstyled a {
-    transition: color 0.3s ease;
 }
+/* Fermeture du style first-child */
 
-/* Hover sur liens du footer */
-/* EFFET : Liens deviennent blancs au survol */
-.footer-bg .list-unstyled a:hover {
-    color: white !important;
+.footer-bg .row.g-4.mb-4 {
+/* Répétition de la règle (pourrait être combinée avec la précédente) */
+
+    align-items: center;
+    /* Centre verticalement tous les éléments */
+
 }
+/* Fermeture du style row */
 
-/* Section réseaux sociaux */
-/* EFFET : Conteneur avec padding vertical 32px et lignes avant/après */
 .footer-social-divider {
-    position: relative;
-    padding: 2rem 0;  /* 32px top/bottom */
-}
+/* Section des réseaux sociaux avec bordures */
 
-/* Lignes avant et après réseaux sociaux */
-/* EFFET : Lignes horizontales noires de 2px au-dessus et en-dessous */
+    position: relative;
+    /* position: relative pour les pseudo-éléments */
+
+    padding: 2rem 0;
+    /* padding: 2rem (32px) en haut et en bas, 0 à gauche et droite */
+    /* Crée de l'espace autour de cette section */
+
+}
+/* Fermeture du style social-divider */
+
 .footer-social-divider::before,
 .footer-social-divider::after {
+/* Pseudo-éléments pour créer les lignes de séparation */
+
     content: '';
+    /* Contenu vide */
+
     position: absolute;
+    /* Position absolue pour placer les lignes librement */
+
     left: 0;
+    /* Commence au bord gauche */
+
     right: 0;
-    height: 0.125rem;  /* 2px */
+    /* Va jusqu'au bord droit */
+    /* RÉSULTAT : les lignes prennent toute la largeur */
+
+    height: 0.125rem;
+    /* Hauteur de 2px (0.125 × 16) */
+
     background-color: var(--color-text);
-}
+    /* Couleur gris foncé */
 
-/* Ligne du haut */
+}
+/* Fermeture du style pour les lignes */
+
 .footer-social-divider::before {
+/* Ligne du haut */
+
     top: 0;
-}
+    /* Positionnée tout en haut */
 
-/* Ligne du bas */
+}
+/* Fermeture du style ::before */
+
 .footer-social-divider::after {
+/* Ligne du bas */
+
     bottom: 0;
-}
+    /* Positionnée tout en bas */
 
-/* Contenu de la section réseaux sociaux */
-/* EFFET : Titre à gauche, icônes à droite (space-between) */
-.footer-social-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;  /* 32px */
-    flex-wrap: wrap;
 }
+/* Fermeture du style ::after */
 
-/* Titre "Suivez-nous sur les réseaux" */
-/* EFFET : Taille 28.8px, gris foncé, sans margin */
-.footer-social-divider h3 {
-    font-size: 1.8rem !important;
-    color: var(--color-text) !important;
-    margin: 0 !important;
+.footer-bg .list-unstyled a {
+/* Tous les liens dans les listes sans puces du footer */
+
+    transition: color 0.3s ease;
+    /* Anime le changement de couleur */
+
 }
+/* Fermeture du style pour les liens */
 
-/* Conteneur des icônes sociales */
-/* EFFET : Icônes alignées horizontalement avec 32px d'espacement */
-.footer-social-icons {
-    display: flex;
-    gap: 2rem;  /* 32px */
-    align-items: center;
+.footer-bg .list-unstyled a:hover {
+/* Liens au survol */
+
+    color: white !important;
+    /* Change en blanc au survol */
+    /* !important force cette règle (surcharge Bootstrap) */
+
 }
+/* Fermeture du style hover */
 
-/* Images des réseaux sociaux */
-/* EFFET : Icônes 56px de haut (3.5rem), transition smooth */
-.footer-social-divider a img {
+.footer-social-divider a {
+/* Liens des réseaux sociaux */
+
     transition: transform 0.3s ease;
-    display: block;
-    height: 3.5rem !important;  /* 56px */
-}
+    /* Anime la transformation (agrandissement) */
 
-/* Hover sur icônes sociales */
-/* EFFET : Icônes grandissent de 15% au survol */
+    display: inline-block;
+    /* Nécessaire pour appliquer transform */
+
+}
+/* Fermeture du style pour les liens sociaux */
+
 .footer-social-divider a:hover img {
-    transform: scale(1.15);
-}
+/* Au survol d'un lien, cible l'image à l'intérieur */
 
-/* Copyright */
-/* EFFET : Texte gris foncé */
-.footer-bg .text-center p {
-    color: var(--color-text) !important;
+    transform: scale(1.15);
+    /* Agrandit l'image de 15% */
+    /* RÉSULTAT : effet de zoom au survol des icônes sociales */
+
 }
+/* Fermeture du style hover pour les images sociales */
