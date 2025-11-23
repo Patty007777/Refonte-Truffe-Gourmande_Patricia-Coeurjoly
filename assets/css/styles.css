@@ -1,42 +1,38 @@
-/*============ BONNES PRATIQUES ==========*/
 
-* {
-  box-sizing: border-box;
-}
 
-html {
-  scroll-behavior: smooth;
-}
-
-/*============== VARIABLES ===========*/
-
+/* ============================================
+   VARIABLES CSS
+   ============================================ */
 :root {
-
     --color-primary: #7aa3a7;
-    --color-text: #2C2C2C;
+    --color-secondary: #C9A68D;
+    --color-accent: #D4AF6A;
     --color-background: #fdf9f3;
+    --color-hero: #ead7cd;
+    --color-button: #d4a59e;
+    --color-text: #2C2C2C;
     --font-heading: 'Dancing Script', cursive;
     --font-body: 'Poppins', sans-serif;
     --font-nav: 'Raleway', sans-serif;
-}   
-
-/*========== STYLE DE BASE POLICES ET COULEURS ===========*/
-
-body {
-  font-family: var(--font-body); 
-  color: var(--color-text);
-  background-color: var(--color-background);
 }
 
-/*=========TITRES ===========*/
+/* ============================================
+   BASE - Bootstrap Override minimal
+   ============================================ */
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--color-text);
 }
 
-/*========== SECTION HEADER =================*/
-
+/* ============================================
+   HEADER HORIZONTAL
+   ============================================ */
 .header-horizontal {
     background-color: var(--color-primary);
     padding: 0;
@@ -46,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     padding: 0.9375rem 1.875rem;
-    gap: 0;  
+    gap: 0;
 }
 
 .header-horizontal__logo-section {
@@ -54,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-horizontal__logo {
-    height: 8.65rem;
+    height: 5.625rem;
     width: auto;
     display: block;
 }
@@ -63,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 1.8rem;
+    margin-left: 1.875rem;
 }
 
 .header-horizontal__top {
@@ -72,62 +68,61 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-horizontal__icons {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     align-items: center;
-    gap: 1.2rem
-} 
+    gap: 1.125rem;
+}
 
 .header-horizontal__icon {
-    color: var(--color-text); 
+    color: var(--color-text);
     text-decoration: none;
     transition: all 0.3s ease;
     display: flex;
-     align-items: center;
+    align-items: center;
 }
 
 .header-horizontal__icon:hover {
-    color: #000000; 
+    color: #000000;
     transform: scale(1.1);
 }
 
-.header-horizontal__icon img {
-    width: 2.5rem; 
-    height: 2.5rem;
+.header-horizontal__icon svg {
+    width: 1.625rem;
+    height: 1.625rem;
 }
 
 .header-horizontal__separator {
-    height: 0.125rem;
-    background-color: black;
+    height: 0.0625rem;
+    background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
-    margin: 0;  
+    margin: 0;
 }
 
 .header-horizontal__nav {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    gap: 3.4rem;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3.4375rem;
     padding-top: 0.625rem;
 }
 
 .header-horizontal__link {
-
-   color: black;
-   text-decoration: none; 
-   font-family: var(--font-nav);
-   font-weight: 500;
-   font-size: 1.1875rem; 
-   padding: 0.3125rem 0; 
-   transition: all 0.3s ease; 
-   white-space: nowrap; 
-   position: relative; 
-   display: flex;
-   align-items: center;
-   gap: 0.3125rem;  
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: var(--font-nav);
+    font-weight: 700;
+    font-size: 1.1875rem;
+    padding: 0.3125rem 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
 }
 
 .header-horizontal__link:hover {
-    color: white;
+    color: #000000;
 }
 
 .header-horizontal__link--active {
@@ -136,10 +131,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-horizontal__arrow {
-    font-size: 0.875rem; 
+    font-size: 0.875rem;
     display: inline-block;
     transition: transform 0.3s ease;
-}  
+}
 
 .header-horizontal__dropdown:hover .header-horizontal__arrow {
     transform: rotate(180deg);
@@ -151,15 +146,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-horizontal__dropdown-menu {
     display: none;
-    position: absolute; 
-    top: 100%;  
-    left: 0; 
+    position: absolute;
+    top: 100%;
+    left: 0;
     background-color: white;
-    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15); 
-    border-radius: 0.25rem; 
-    padding: 0.625rem 0;  
-    min-width: 11.25rem;  
-    z-index: 1000; 
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    padding: 0.625rem 0;
+    min-width: 11.25rem;
+    z-index: 1000;
+    margin-top: 0.3125rem;
 }
 
 .header-horizontal__dropdown:hover .header-horizontal__dropdown-menu {
@@ -167,189 +163,196 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-horizontal__dropdown-menu a {
-    display: block; 
+    display: block;
     padding: 0.625rem 1.25rem;
     color: var(--color-text);
-    text-decoration: none; 
+    text-decoration: none;
     font-family: var(--font-nav);
-    font-weight: 600; 
-    font-size: 1rem; 
+    font-weight: 600;
+    font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
 .header-horizontal__dropdown-menu a:hover {
     background-color: var(--color-primary);
-    color: white; 
+    color: white;
 }
 
-/*============= BARRE DE RECHERCHE ====================*/
+/* ============================================
+   HERO SECTION - Cercles simples SANS animation
+   ============================================ */
+.hero-bg {
+    background-color: var(--color-hero);
+}
 
-.header-horizontal__search {
-    display: none;
-    opacity: 0;
-    max-width: 0;
-    overflow: hidden;
-    transition: all 0.4s ease;
+/* Cercle simple avec image - SANS texte tournant */
+.animal-circle {
+    width: 11.25rem;
+    height: 11.25rem;
+    background-image: url('images/cercle-ondule.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.animal-circle:hover {
+    transform: scale(1.05);
+}
+
+.animal-circle img {
+    width: 7.5rem;
+    height: 7.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ============================================
+   BOUTONS CUSTOM UNIFORMES - Texte et flèches BLANC
+   ============================================ */
+.btn-custom-arrow {
+    background-color: var(--color-button);
+    color: white;
+    border: 0.125rem solid var(--color-text);
+    border-radius: 1.5625rem;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.header-horizontal__search.show {
-    display: flex;
-    opacity: 1;
-    max-width: 350px;
+.btn-custom-arrow:hover {
+    background-color: var(--color-primary);
+    color: white;
+    transform: translateY(-0.125rem);
 }
 
-.header-horizontal__search-input {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border: 2px solid black;
-    border-radius: 25px;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    outline: none;
+.btn-custom-arrow span {
+    color: white;
 }
 
-.header-horizontal__search-input:focus {
-    border-color: #000;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+/* ============================================
+   BANDE DÉFILANTE - Animation custom
+   ============================================ */
+.scrolling-banner {
+    background-color: var(--color-primary);
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.header-horizontal__search-button {
-    width: 3rem;
-    height: 3rem;
-    background-color: #e8a5a5;
+.scrolling-content {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+}
+
+.scrolling-text {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--color-text);
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   LIGNES DÉCORATIVES - Custom uniquement
+   ============================================ */
+.decorative-line {
+    height: 0.125rem;
+    background-color: var(--color-text);
+    flex: 1;
+}
+
+.decorative-line-vertical {
+    width: 0.125rem;
+    background-color: var(--color-text);
+}
+
+/* ============================================
+   CERCLES ICÔNES - Override Bootstrap minimal
+   ============================================ */
+.icon-circle {
+    width: 6.25rem;
+    height: 6.25rem;
+    background-color: #000000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.header-horizontal__search-button:hover {
-    background-color: #d89090;
-}
-
-.header-horizontal__search-button img {
-    width: 1.5rem;
-    height: 1.5rem;
+.icon-circle img {
+    width: 3.75rem;
+    height: 3.75rem;
     filter: brightness(0) invert(1);
 }
 
-/*============= FOOTER ====================*/
-/*============= FOOTER ====================*/
+/* Cercles animaux avec image de fond */
+.animal-icon-circle {
+    width: 11.25rem;
+    height: 11.25rem;
+    background-image: url('images/cercle-ondule.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
 
+.animal-icon-circle:hover {
+    transform: scale(1.05);
+}
+
+.animal-icon-circle img {
+    width: 7.5rem;
+    height: 7.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ============================================
+   SECTIONS - Fond beige
+   ============================================ */
+.section-bg-beige {
+    background-color: var(--color-background);
+}
+
+.section-bg-white {
+    background-color: var(--color-background);
+}
+
+/* ============================================
+   NEWSLETTER - Fond BLEU (comme header/footer)
+   ============================================ */
+.newsletter-bg {
+    background-color: var(--color-primary);
+}
+
+.newsletter-form-bg {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
 .footer-bg {
     background-color: var(--color-primary);
 }
 
-.footer-title-wrapper {
-    position: relative;
-    text-align: center;
-    margin-bottom: 3rem;
-    width: 100%;
-    padding: 0;
-}
-
-.footer-title-wrapper::before,
-.footer-title-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 2px;
-    background-color: var(--color-text);
-}
-
-.footer-title-wrapper::before {
-    left: 0;
-    right: calc(50% + 0.5rem); 
-    transform-origin: left center;
-    animation: shrink-from-right 3s steps(50) 1s 1 normal forwards;
-}
-
-.footer-title-wrapper::after {
-    right: 0;
-    left: calc(50% + 0.5rem);
-    transform-origin: right center;
-    animation: shrink-from-left 3s steps(50) 1s 1 normal forwards;
-}
-
-.footer-bg h2 {
-    color: var(--color-text);
-    margin: 0;
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-}
-
-.footer-bg h2 .typewriter {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 0;
-    border-right: 3px solid var(--color-text); 
-    animation: typing 3s steps(50) 1s 1 normal forwards, 
-               blink 0.75s step-end 1s 4 normal forwards;
-}
-
-@keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes blink {
-    50% {
-        border-right-color: transparent;
-    }
-}
-
-@keyframes shrink-from-right {
-    0% {
-        transform: translateY(-50%) scaleX(1);
-    }
-    100% {
-        transform: translateY(-50%) scaleX(0.33);
-    }
-}
-
-@keyframes shrink-from-left {
-    0% {
-        transform: translateY(-50%) scaleX(1);
-    }
-    100% {
-        transform: translateY(-50%) scaleX(0.33);
-    }
-}
-
-/* Force tous les h3 à avoir la même hauteur */
-.footer-bg h3 {
-    font-family: var(--font-heading) !important;
-    font-size: 1.8rem !important;
-    color: var(--color-text) !important;
-    line-height: 1.3 !important;
-    margin-bottom: 1rem !important;
-}
-
-/* Alignement vertical de toutes les colonnes */
-.footer-bg .row.g-4.mb-4 {
-    align-items: flex-start !important;
-}
-
-/* Centre le logo dans sa colonne */
-.footer-bg .row .col-md-3:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Section réseaux sociaux */
 .footer-social-divider {
     position: relative;
     padding: 2rem 0;
@@ -373,25 +376,152 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
 }
 
-/*============= EFFETS HOVER FOOTER ====================*/
-
-/* Transition et hover sur les liens */
-.footer-bg .list-unstyled a {
-    transition: color 0.3s ease;
+/* ============================================
+   CAROUSEL CUSTOM - Override Bootstrap minimal
+   ============================================ */
+.carousel-control-custom {
+    background-color: var(--color-background);
+    border-radius: 50%;
+    width: 3.125rem;
+    height: 3.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    font-size: 2.5rem;
+    font-weight: bold;
 }
 
-.footer-bg .list-unstyled a:hover {
-    color: white !important;
+/* ============================================
+   CARTES - Fond beige
+   ============================================ */
+.card {
+    background-color: var(--color-background);
+    border: none;
 }
 
-/* Transition et hover sur les icônes sociales */
-.footer-social-divider a {
-    transition: transform 0.3s ease;
-    display: inline-block;
+/* ============================================
+   CLASSES POUR CARTES PRODUITS
+   ============================================ */
+.products__card-line {
+    width: 100%;
+    height: 0.125rem;
+    background-color: var(--color-text);
 }
 
-.footer-social-divider a:hover img {
-    transform: scale(1.15);
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 992px) {
+    .header-horizontal__wrapper {
+        flex-direction: column;
+        gap: 1.25rem;
+        align-items: center;
+    }
+    
+    .header-horizontal__right {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .header-horizontal__nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.875rem;
+    }
+    
+    .header-horizontal__icons {
+        justify-content: center;
+    }
 }
 
+@media (max-width: 768px) {
+    .animal-circle {
+        width: 9.375rem;
+        height: 9.375rem;
+    }
+    
+    .animal-circle img {
+        width: 5.625rem;
+        height: 5.625rem;
+    }
+    
+    .animal-icon-circle {
+        width: 9.375rem;
+        height: 9.375rem;
+    }
+    
+    .animal-icon-circle img {
+        width: 5.625rem;
+        height: 5.625rem;
+    }
+    
+    .icon-circle {
+        width: 5rem;
+        height: 5rem;
+    }
+    
+    .icon-circle img {
+        width: 2.8125rem;
+        height: 2.8125rem;
+    }
+    
+    .header-horizontal__nav {
+        gap: 1.25rem;
+    }
+    
+    .header-horizontal__link {
+        font-size: 1.0625rem;
+    }
+    
+    .header-horizontal__logo {
+        height: 4.375rem;
+    }
+}
 
+@media (max-width: 576px) {
+    .header-horizontal__wrapper {
+        padding: 0.9375rem;
+    }
+    
+    .header-horizontal__nav {
+        flex-direction: column;
+        gap: 0.9375rem;
+        text-align: center;
+    }
+    
+    .header-horizontal__link {
+        font-size: 1.125rem;
+        justify-content: center;
+    }
+    
+    .header-horizontal__icons {
+        gap: 1.5625rem;
+    }
+    
+    .animal-circle {
+        width: 8.125rem;
+        height: 8.125rem;
+    }
+    
+    .animal-circle img {
+        width: 4.6875rem;
+        height: 4.6875rem;
+    }
+    
+    .animal-icon-circle {
+        width: 8.125rem;
+        height: 8.125rem;
+    }
+    
+    .animal-icon-circle img {
+        width: 4.6875rem;
+        height: 4.6875rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .scrolling-banner {
+        font-size: 0.9rem;
+    }
+}
